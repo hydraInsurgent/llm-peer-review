@@ -4,7 +4,8 @@ You are updating documentation after code changes.
 
 ## Primary Documentation Files
 
-- **CLAUDE.md** - AI assistant instructions (portable across projects)
+- **CLAUDE.md** - Project-specific instructions (user-owned)
+- **`.claude/rules/toolkit.md`** - Toolkit workflow rules (toolkit-owned, auto-updated)
 - **README.md** - Project overview for humans
 
 Keep these in sync and non-contradictory.

@@ -109,7 +109,7 @@ foreach ($f in @("setup.sh", "setup.ps1", "install-alias.sh", "install-alias.ps1
   }
 }
 
-foreach ($f in @("CLAUDE.md", ".env.local.example", ".claude\settings.local.json", ".gitignore", ".gitattributes")) {
+foreach ($f in @("CLAUDE.md", "LESSONS.md", ".env.local.example", ".claude\settings.local.json", ".claude\rules\toolkit.md", ".gitignore", ".gitattributes")) {
   $p = Join-Path $ToolkitRoot $f
   if (-not (Test-Path -LiteralPath $p -PathType Leaf)) {
     Write-Host "  Error: source file not found: $p"
@@ -126,6 +126,7 @@ if (-not $PreflightOk) {
 }
 
 New-Item -ItemType Directory -Force -Path (Join-Path $Target ".claude\commands") | Out-Null
+New-Item -ItemType Directory -Force -Path (Join-Path $Target ".claude\rules") | Out-Null
 New-Item -ItemType Directory -Force -Path (Join-Path $Target "scripts") | Out-Null
 
 $Skipped = @()
@@ -174,7 +175,21 @@ foreach ($gitFile in @(".gitignore", ".gitattributes")) {
   }
 }
 
-foreach ($f in @("CLAUDE.md", ".claude\settings.local.json")) {
+# ─── Toolkit rules (upstream-owned — always copy) ─
+Write-Host "  Copying .claude\rules\toolkit.md ..."
+$toolkitRuleSrc = Join-Path $ToolkitRoot ".claude\rules\toolkit.md"
+$toolkitRuleDest = Join-Path $Target ".claude\rules\toolkit.md"
+if (Test-Path -LiteralPath $toolkitRuleDest -PathType Leaf) {
+  Write-Host "    [overwriting] toolkit.md (this is managed by the toolkit)"
+}
+try {
+  Copy-Item -LiteralPath $toolkitRuleSrc -Destination $toolkitRuleDest -Force
+} catch {
+  Write-Host "  Error: Failed to copy toolkit.md: $_"
+  exit 1
+}
+
+foreach ($f in @("CLAUDE.md", "LESSONS.md", ".claude\settings.local.json")) {
   $src = Join-Path $ToolkitRoot $f
   $dest = Join-Path $Target $f
   if (Test-Path -LiteralPath $dest -PathType Leaf) {

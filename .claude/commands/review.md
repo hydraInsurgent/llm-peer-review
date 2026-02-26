@@ -31,6 +31,11 @@ Perform comprehensive code review. Be thorough but concise.
 - **[Severity]** [File:line] - [Issue description]
   - Fix: [Suggested fix]
 
+### 🏗️ Staff Engineer Check
+- **Right approach?** [Assessment]
+- **Shortcuts to clean up?** [Assessment]
+- **What would you push back on?** [Assessment]
+
 ### 📊 Summary
 - Files reviewed: X
 - Critical issues: X
@@ -41,5 +46,12 @@ Perform comprehensive code review. Be thorough but concise.
 - **HIGH** - Bugs, performance issues, bad UX
 - **MEDIUM** - Code quality, maintainability
 - **LOW** - Style, minor improvements
+
+## Staff Engineer Check
+
+After the standard review, step back and evaluate as a staff engineer would:
+- **Right approach?** — Is the overall design/architecture sound, not just the code?
+- **Shortcuts to clean up?** — Anything that works now but would need fixing before shipping to production?
+- **What would you push back on?** — What would a senior engineer flag before merging this PR?
 
 ## REMEMBER: Report issues only. Do NOT edit any files until I approve.

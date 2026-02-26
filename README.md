@@ -133,7 +133,7 @@ powershell -ExecutionPolicy Bypass -File C:\path\to\llm-peer-review\scripts\setu
 
 > **Note:** If you run the script from inside the toolkit repository without specifying a target, it will show an error to prevent accidentally copying files into the wrong place.
 
-The scripts copy commands and runtime scripts (ask-gpt.js, ask-gemini.js) to your project. Setup scripts stay in the toolkit repo and are not copied. CLAUDE.md and settings.local.json are skipped if they already exist — those are yours to customize.
+The scripts copy commands, runtime scripts (ask-gpt.js, ask-gemini.js), and toolkit rules to your project. Setup scripts stay in the toolkit repo and are not copied. CLAUDE.md, LESSONS.md, and settings.local.json are skipped if they already exist — those are yours to customize. Toolkit rules (`.claude/rules/toolkit.md`) are always updated.
 
 ### Option C: Do It Manually
 
@@ -142,9 +142,11 @@ Copy these into your project:
 | What to copy | Where it goes |
 |---|---|
 | `.claude/commands/` (whole folder) | `your-project/.claude/commands/` |
+| `.claude/rules/toolkit.md` | `your-project/.claude/rules/toolkit.md` |
 | `.claude/settings.local.json` | `your-project/.claude/settings.local.json` |
 | `scripts/` (only `ask-gpt.js` and `ask-gemini.js`) | `your-project/scripts/` |
 | `CLAUDE.md` | `your-project/CLAUDE.md` |
+| `LESSONS.md` | `your-project/LESSONS.md` |
 | `.env.local.example` | `your-project/.env.local.example` |
 | `.gitignore` | `your-project/.gitignore` |
 | `.gitattributes` | `your-project/.gitattributes` |
@@ -161,6 +163,14 @@ cp .env.local.example .env.local
 ### Option D: Let Your AI Agent Do It
 
 Tell your AI agent (Claude Code, Cursor, etc.): "Set up the workflow from this repo in my project" and point it to [`AGENT-SETUP.md`](AGENT-SETUP.md). It has step-by-step instructions written for AI agents.
+
+---
+
+## Update an Existing Project
+
+Re-run the same setup command. It's safe to rerun — commands, scripts, and toolkit rules get updated; your `CLAUDE.md`, `LESSONS.md`, and `settings.local.json` are never overwritten.
+
+**Coming from before the CLAUDE.md split?** If your `CLAUDE.md` has toolkit rules mixed in (workflow, permissions, slash commands table), those now live in `.claude/rules/toolkit.md`. After re-running setup, edit your `CLAUDE.md` to keep only project-specific info. See [CHANGELOG.md](CHANGELOG.md) for details.
 
 ---
 
@@ -210,9 +220,10 @@ Want a different perspective? Run `/ask-gemini` next.
 
 ## Customization
 
-- **CLAUDE.md** — Tells the AI how to behave in your project. Edit it to match your style.
+- **CLAUDE.md** — Your project-specific instructions. Describe your project, tech stack, and preferences here.
+- **`.claude/rules/toolkit.md`** — Toolkit workflow rules (auto-updated on setup). Don't edit this — your changes will be overwritten.
 - **Commands** — Each file in `.claude/commands/` is independent. Want `/review` to check different things? Edit `review.md`.
-- **Git workflow** — The git guidance in CLAUDE.md can be adjusted for your team.
+- **LESSONS.md** — Track what you learn across sessions. Yours to customize.
 
 ---
 

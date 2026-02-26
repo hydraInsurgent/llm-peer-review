@@ -27,6 +27,7 @@ Create a single markdown file containing all code and context needed for externa
 ### Always Include (if they exist):
 - `README.md` (project overview)
 - `CLAUDE.md` (project context)
+- `.claude/rules/toolkit.md` (toolkit workflow rules)
 - `package.json` or `pyproject.toml` (dependencies)
 - Main config files for the project type
 

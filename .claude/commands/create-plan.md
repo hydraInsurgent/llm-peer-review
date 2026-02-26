@@ -36,6 +36,9 @@ Key architectural/implementation choices made during exploration:
 - [ ] 🟥 **Step 2: [Name]**
   - [ ] 🟥 Subtask 1
   - [ ] 🟥 Subtask 2
+
+## Outcomes
+<!-- Fill in after execution: decision-relevant deltas only. What changed vs. planned? Key decisions made? Assumptions invalidated? -->
 ```
 
 Again, it's still not time to build yet. Just write the clear plan document. No extra complexity or extra scope beyond what we discussed.

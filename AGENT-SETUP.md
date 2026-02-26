@@ -51,14 +51,40 @@ If the command fails partway through, it is safe to rerun. Leftover `/tmp/tmp.*`
 
 This copies:
 - `.claude/commands/` (all slash command definitions)
+- `.claude/rules/toolkit.md` (toolkit workflow rules — always updated)
 - `.claude/settings.local.json` (permission config — skipped if it already exists)
 - `scripts/` (only ask-gpt.js and ask-gemini.js — runtime scripts needed for peer review)
-- `CLAUDE.md` (project instructions — skipped if it already exists)
+- `CLAUDE.md` (project instructions template — skipped if it already exists)
+- `LESSONS.md` (learning log template — skipped if it already exists)
 - `.env.local.example` (API key template)
 - `.gitignore` (ignores plan files, env files, node_modules, etc.)
 - `.gitattributes` (enforces LF line endings for shell scripts)
 
 Note: Setup scripts (setup.sh, setup.ps1, install-alias.*) stay in the toolkit repo and are not copied to target projects.
+
+### Updating an Existing Project
+
+If the toolkit is already set up in the user's project, **run the same Step 1 command again**. It's safe to rerun.
+
+**What gets updated** (always overwritten):
+- `.claude/commands/` — all slash command definitions
+- `.claude/rules/toolkit.md` — toolkit workflow rules
+- `scripts/ask-gpt.js` and `scripts/ask-gemini.js` — runtime scripts
+- `.env.local.example`, `.gitignore`, `.gitattributes`
+
+**What's preserved** (skipped if it already exists):
+- `CLAUDE.md` — the user's project-specific instructions
+- `LESSONS.md` — the user's learning log
+- `.claude/settings.local.json` — the user's permission config
+
+**Migrating from the old CLAUDE.md (pre-split):** If the user's `CLAUDE.md` contains toolkit rules (workflow, slash commands table, permissions table, git workflow, subagent strategy), those rules now live in `.claude/rules/toolkit.md` and are auto-loaded. The user should:
+1. Re-run setup (Step 1 above) to get the new `toolkit.md`
+2. Edit their `CLAUDE.md` to keep only project-specific info (About This Project, Who I Am, My Preferences)
+3. Remove the toolkit sections from their `CLAUDE.md` — they're now managed automatically
+
+If the user wants a completely fresh `CLAUDE.md` template, they can delete theirs and rerun setup.
+
+---
 
 ### Step 2: Install dependencies (optional)
 
@@ -86,13 +112,13 @@ Do NOT fill in API keys yourself. The user must do this manually.
 
 ### Step 4: Customize CLAUDE.md
 
-If `CLAUDE.md` was newly created (not skipped), tell the user they should edit it to describe their project instead of the toolkit. The sections to update:
+If `CLAUDE.md` was newly created (not skipped), tell the user they should edit it to describe their project. The sections to update:
 
-- **"About This Project"** — change to describe their project
-- **"Who I Am"** — change to describe themselves or their team
-- **"Remember"** — adjust to their preferences
+- **"About This Project"** — describe their project, tech stack, what it does
+- **"Who I Am"** — describe themselves or their team
+- **"My Preferences"** — add project-specific rules or coding conventions
 
-The rest of CLAUDE.md (workflow, commands, git guidance) works as-is.
+Toolkit workflow rules are in `.claude/rules/toolkit.md` (auto-loaded, managed by the toolkit — no need to edit).
 
 ---
 

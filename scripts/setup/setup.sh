@@ -103,7 +103,7 @@ for f in setup.sh setup.ps1 install-alias.sh install-alias.ps1; do
   fi
 done
 
-for f in CLAUDE.md .env.local.example .claude/settings.local.json .gitignore .gitattributes; do
+for f in CLAUDE.md LESSONS.md .env.local.example .claude/settings.local.json .claude/rules/toolkit.md .gitignore .gitattributes; do
   if [ ! -f "$TOOLKIT_ROOT/$f" ]; then
     echo "  Error: source file not found: $TOOLKIT_ROOT/$f"
     PREFLIGHT_OK=false
@@ -120,6 +120,7 @@ fi
 
 # ─── Create target directories ───────────────────────────────
 mkdir -p "$TARGET/.claude/commands"
+mkdir -p "$TARGET/.claude/rules"
 mkdir -p "$TARGET/scripts"
 
 # ─── Track what happens ──────────────────────────────────────
@@ -158,8 +159,16 @@ echo "  Copying .gitattributes ..."
 cp "$TOOLKIT_ROOT/.gitattributes" "$TARGET/.gitattributes"
 OVERWROTE+=(.gitattributes)
 
+# ─── Toolkit rules (upstream-owned — always copy) ────────────
+echo "  Copying .claude/rules/toolkit.md ..."
+if [ -f "$TARGET/.claude/rules/toolkit.md" ]; then
+  echo "    ↻ overwriting toolkit.md (this is managed by the toolkit)"
+fi
+cp "$TOOLKIT_ROOT/.claude/rules/toolkit.md" "$TARGET/.claude/rules/toolkit.md"
+OVERWROTE+=(.claude/rules/toolkit.md)
+
 # ─── Project-owned files (skip if already exist) ─────────────
-for f in CLAUDE.md .claude/settings.local.json; do
+for f in CLAUDE.md LESSONS.md .claude/settings.local.json; do
   if [ -f "$TARGET/$f" ]; then
     echo "  Skipping $f — already exists (yours to customize)"
     SKIPPED+=("$f")
