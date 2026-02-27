@@ -4,11 +4,13 @@ You are updating documentation after code changes.
 
 ## Primary Documentation Files
 
-- **CLAUDE.md** - Project-specific instructions (user-owned)
-- **`.claude/rules/toolkit.md`** - Toolkit workflow rules (toolkit-owned, auto-updated)
+- **CLAUDE.md** - Project-specific instructions: tech stack, preferences, team info (user-owned)
 - **README.md** - Project overview for humans
+- **LESSONS.md** - Learning log: what worked, what didn't, mistakes to avoid (user-owned)
+- **CHANGELOG.md** - User-facing changes: new features, breaking changes (update if it exists)
+- **`.claude/rules/toolkit.md`** - Toolkit workflow rules (toolkit-owned, **do not edit** — overwritten on update)
 
-Keep these in sync and non-contradictory.
+Keep README.md and CLAUDE.md consistent with each other. Never edit `toolkit.md`.
 
 ## 1. Identify Changes
 - Check git diff or recent commits for modified files
@@ -25,11 +27,11 @@ For each changed file:
 
 ## 3. Update Relevant Documentation
 
-Update README.md and CLAUDE.md with:
-- New features or changed behavior
-- Updated setup instructions if needed
-- New environment variables or dependencies
-- New or updated slash commands
+**What goes where:**
+- **README.md** — New features, changed behavior, setup instructions, new commands
+- **CLAUDE.md** — Project description, tech stack, team info, coding preferences
+- **CHANGELOG.md** — User-facing changes: new features, breaking changes, fixes (if the file exists)
+- **LESSONS.md** — Prompt the user: "Did you learn anything this session worth logging?"
 
 ## 4. Documentation Style Rules
 
@@ -37,12 +39,12 @@ Update README.md and CLAUDE.md with:
 ✅ **Practical** - Examples over theory
 ✅ **Accurate** - Code verified, not assumed
 ✅ **Current** - Matches actual implementation
-✅ **Portable** - CLAUDE.md should work across projects
+✅ **Right file** - Put info where it belongs (see Section 3)
 
 ❌ No enterprise fluff
 ❌ No outdated information
 ❌ No assumptions without verification
-❌ No project-specific paths in portable docs
+❌ Don't edit `toolkit.md` — it's auto-managed
 
 ## 5. Ask if Uncertain
 

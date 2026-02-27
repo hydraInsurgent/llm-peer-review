@@ -84,6 +84,8 @@ If the toolkit is already set up in the user's project, **run the same Step 1 co
 
 If the user wants a completely fresh `CLAUDE.md` template, they can delete theirs and rerun setup.
 
+**What's new in commands:** After re-running setup, the updated `/document` command now covers LESSONS.md and CHANGELOG.md in addition to README.md and CLAUDE.md. It also knows not to edit `toolkit.md` (auto-managed). Tell the user about these changes if they were on an older version.
+
 ---
 
 ### Step 2: Install dependencies (optional)

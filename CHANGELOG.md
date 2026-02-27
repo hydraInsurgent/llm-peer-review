@@ -26,3 +26,7 @@ Toolkit instructions have moved out of `CLAUDE.md` into `.claude/rules/toolkit.m
 - **Outcomes section** in `/create-plan` — Record what actually happened vs. what was planned
 - **"When to Stop"** in `/execute` — Stop and re-plan on critical blockers instead of pushing through
 - **Subagent Strategy** — Guidance for Claude to use subagents for research and parallelize independent work
+
+### Fixes
+
+- **`/document` command** — Now aware of LESSONS.md and CHANGELOG.md. Includes file ownership guidance (won't edit `toolkit.md`). Clarifies what goes where: README for features, CLAUDE.md for project info, CHANGELOG for user-facing changes, LESSONS for learnings.
