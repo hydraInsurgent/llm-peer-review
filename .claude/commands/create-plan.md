@@ -12,6 +12,7 @@ Based on our full exchange, produce a markdown plan document.
 - Include dynamic tracking of overall progress percentage (at top)
 - Do NOT add extra scope or unnecessary complexity beyond explicitly clarified details
 - Steps should be modular, elegant, minimal, and integrate seamlessly within the existing codebase
+- Identify independent steps. Tag them `[parallel]` with a declared deliverable (e.g., "adds tests for auth module"). Tag dependent steps `[sequential]` with what they depend on. Parallel steps must be independent in both files AND environment (dependencies, services, migrations, env vars).
 
 ## Markdown Template
 ```
@@ -22,6 +23,10 @@ Based on our full exchange, produce a markdown plan document.
 ## TLDR
 Short summary of what we're building and why.
 
+## Goal State (optional — include for features with 3+ steps)
+**Current State:** Where things are now.
+**Goal State:** Where we want to end up.
+
 ## Critical Decisions
 Key architectural/implementation choices made during exploration:
 - Decision 1: [choice] - [brief rationale]
@@ -29,11 +34,11 @@ Key architectural/implementation choices made during exploration:
 
 ## Tasks
 
-- [ ] 🟥 **Step 1: [Name]**
+- [ ] 🟥 **Step 1: [Name]** `[parallel]` → delivers: [what this step produces]
   - [ ] 🟥 Subtask 1
   - [ ] 🟥 Subtask 2
 
-- [ ] 🟥 **Step 2: [Name]**
+- [ ] 🟥 **Step 2: [Name]** `[sequential]` → depends on: Step 1
   - [ ] 🟥 Subtask 1
   - [ ] 🟥 Subtask 2
 

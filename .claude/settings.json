@@ -5,5 +5,8 @@
       "Bash(/tmp/ask-gemini-debate.md:*)",
       "Bash(gh repo edit:*)"
     ]
+  },
+  "env": {
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "65"
   }
 }

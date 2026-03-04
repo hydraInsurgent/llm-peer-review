@@ -24,7 +24,9 @@
       "Bash(git add:*)",
       "Bash(gh issue view:*)",
       "Bash(gh repo view:*)",
-      "Bash(gh release list:*)"
+      "Bash(gh release list:*)",
+      "Bash(gh issue list:*)",
+      "Bash(test -f /home/mayank/Projects/llm-peer-review/.claude/commands/pair-debug.md)"
     ],
     "additionalDirectories": [
       "/tmp"

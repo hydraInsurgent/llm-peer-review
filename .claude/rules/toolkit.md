@@ -37,6 +37,7 @@ We follow this flow for features:
 | `/create-issue` | Create GitHub issues (ask questions first, keep short) |
 | `/ask-gpt` | AI peer review with ChatGPT debate (3 rounds) |
 | `/ask-gemini` | AI peer review with Gemini debate (3 rounds) |
+| `/pair-debug` | Focused debugging partner — investigate before fixing |
 | `/package-review` | Review a package/codebase |
 | `/learning-opportunity` | Pause to learn a concept at 3 levels of depth |
 
@@ -99,7 +100,7 @@ We follow this flow for features:
 
 ## Permissions
 
-This project uses two settings files. `settings.json` is committed to the repo and provides a shared baseline (currently just temp-file permissions for debate scripts). `settings.local.json` is user-specific and not overwritten on re-setup — your real permissions live here.
+This project uses two settings files. `settings.json` is committed to the repo and provides a shared baseline (temp-file permissions for debate scripts and shared environment settings like compaction threshold). `settings.local.json` is user-specific and not overwritten on re-setup — your real permissions live here.
 
 These are defined in `.claude/settings.local.json`. Each one exists for a reason:
 
