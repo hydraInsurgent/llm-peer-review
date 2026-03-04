@@ -1,4 +1,4 @@
-# AI Agent Setup Instructions
+# AI Agent Setup Instructions (v1.1)
 
 This file is written for AI agents with shell access (like Cursor or Claude Code). If a user asks you to set up this workflow toolkit in their project, follow the steps below exactly.
 
@@ -84,15 +84,16 @@ If the toolkit is already set up in the user's project, **run the same Step 1 co
 
 If the user wants a completely fresh `CLAUDE.md` template, they can delete theirs and rerun setup.
 
-**What's new in commands:** After re-running setup:
+**What's new in v1.1:** After re-running setup:
 - `/review` is now an adaptive multi-lens review with Block/Warn/Suggest severity and Finding IDs (R1, R2...)
 - `/pair-debug` is a new debugging command (logs-first, hypothesis IDs, repro contract)
 - `/create-plan` supports `[parallel]`/`[sequential]` tags on steps
 - `/execute` has pre-flight checks and integration checkpoints for parallel work
 - `/document` covers LESSONS.md and CHANGELOG.md in addition to README.md and CLAUDE.md
 - `.claude/settings.json` now includes `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE: 65`
+- Toolkit now includes a version number (displayed during setup)
 
-Tell the user about these changes if they were on an older version.
+Tell the user about these changes if they were on an older version. See `CHANGELOG.md` for full details.
 
 ---
 

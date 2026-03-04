@@ -66,10 +66,16 @@ fi
 
 TARGET="$(cd "$TARGET" && pwd)"
 
+# ─── Read version ─────────────────────────────────────────────
+VERSION="unknown"
+if [ -f "$TOOLKIT_ROOT/VERSION" ]; then
+  VERSION="$(tr -d '[:space:]' < "$TOOLKIT_ROOT/VERSION")"
+fi
+
 # ─── Header ──────────────────────────────────────────────────
 echo ""
 echo "  ================================"
-echo "   LLM Peer Review"
+echo "   LLM Peer Review v$VERSION"
 echo "  ================================"
 echo ""
 echo "    From:  $TOOLKIT_ROOT"
@@ -103,7 +109,7 @@ for f in setup.sh setup.ps1 install-alias.sh install-alias.ps1; do
   fi
 done
 
-for f in CLAUDE.md LESSONS.md .env.local.example .claude/settings.local.json .claude/rules/toolkit.md .gitignore .gitattributes; do
+for f in VERSION CLAUDE.md LESSONS.md .env.local.example .claude/settings.local.json .claude/rules/toolkit.md .gitignore .gitattributes; do
   if [ ! -f "$TOOLKIT_ROOT/$f" ]; then
     echo "  Error: source file not found: $TOOLKIT_ROOT/$f"
     PREFLIGHT_OK=false

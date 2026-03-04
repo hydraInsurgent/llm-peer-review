@@ -68,9 +68,16 @@ if ($Target -eq ".") {
   $Target = (Resolve-Path -LiteralPath $Target).Path
 }
 
+# ─── Read version ─────────────────────────────────────────────
+$VersionFile = Join-Path $ToolkitRoot "VERSION"
+$Version = "unknown"
+if (Test-Path -LiteralPath $VersionFile) {
+  $Version = (Get-Content -LiteralPath $VersionFile -Raw).Trim()
+}
+
 Write-Host ""
 Write-Host "  ================================"
-Write-Host "   LLM Peer Review"
+Write-Host "   LLM Peer Review v$Version"
 Write-Host "  ================================"
 Write-Host ""
 Write-Host "    From:  $ToolkitRoot"
@@ -109,7 +116,7 @@ foreach ($f in @("setup.sh", "setup.ps1", "install-alias.sh", "install-alias.ps1
   }
 }
 
-foreach ($f in @("CLAUDE.md", "LESSONS.md", ".env.local.example", ".claude\settings.local.json", ".claude\rules\toolkit.md", ".gitignore", ".gitattributes")) {
+foreach ($f in @("VERSION", "CLAUDE.md", "LESSONS.md", ".env.local.example", ".claude\settings.local.json", ".claude\rules\toolkit.md", ".gitignore", ".gitattributes")) {
   $p = Join-Path $ToolkitRoot $f
   if (-not (Test-Path -LiteralPath $p -PathType Leaf)) {
     Write-Host "  Error: source file not found: $p"
