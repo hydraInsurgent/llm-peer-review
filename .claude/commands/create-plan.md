@@ -12,7 +12,18 @@ Based on our full exchange, produce a markdown plan document.
 - Include dynamic tracking of overall progress percentage (at top)
 - Do NOT add extra scope or unnecessary complexity beyond explicitly clarified details
 - Steps should be modular, elegant, minimal, and integrate seamlessly within the existing codebase
-- Identify independent steps. Tag them `[parallel]` with a declared deliverable (e.g., "adds tests for auth module"). Tag dependent steps `[sequential]` with what they depend on. Parallel steps must be independent in both files AND environment (dependencies, services, migrations, env vars).
+
+## Execution Order Tags (for plans with 3+ steps)
+
+**Do not skip this.** For plans with 3 or more steps:
+
+- Tag each step `[parallel]` or `[sequential]`
+- `[parallel]` steps: add `→ delivers: [what this step produces]`
+- `[sequential]` steps: add `→ depends on: Step N`
+- Parallel steps must be independent in both **files AND environment** (dependencies, services, migrations, env vars)
+- If all steps are sequential, still tag them — the tags confirm you thought about execution order
+
+For plans with fewer than 3 steps, skip the tags.
 
 ## Markdown Template
 ```
@@ -33,6 +44,7 @@ Key architectural/implementation choices made during exploration:
 - Decision 2: [choice] - [brief rationale]
 
 ## Tasks
+<!-- For 3+ steps: tag each step [parallel] or [sequential]. See "Execution Order Tags" above. -->
 
 - [ ] 🟥 **Step 1: [Name]** `[parallel]` → delivers: [what this step produces]
   - [ ] 🟥 Subtask 1
