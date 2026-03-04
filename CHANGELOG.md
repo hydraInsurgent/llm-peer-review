@@ -2,6 +2,39 @@
 
 ## Unreleased
 
+### Ruflo Patterns
+
+Adopted 5 patterns from AI research to improve the core commands.
+
+**`/review` — Adaptive Multi-Lens Review:**
+- Auto-detects change type + scope + confidence before reviewing
+- Selects lenses based on type (small fix, feature, codebase, plan, docs, config)
+- Runs parallel sub-reviews for multi-lens reviews
+- New severity: 🚫 Block / ⚠️ Warn / 💡 Suggest (replaces CRITICAL/HIGH/MEDIUM/LOW)
+- Finding IDs (R1, R2...) — say "fix R2 and R5" to approve specific fixes
+- Two-layer output: scannable summary at top, detailed findings by lens below
+- "What Claude Missed" self-check when fixing issues not in the review report
+
+**`/pair-debug` — New Command:**
+- Focused debugging partner (not a teacher — that's `/learning-opportunity`)
+- Logs-first habit: always starts with "check the logs"
+- Repro contract: gathers expected vs actual, error text, environment
+- Hypothesis + check IDs (H1/H2, C1/C2) — user picks which check to run
+
+**`/create-plan` — Parallelization Tags:**
+- Steps tagged `[parallel]` or `[sequential]` with deliverables and dependencies
+- Optional Goal State section for features with 3+ steps
+
+**`/execute` — Parallel Execution:**
+- Pre-flight check: lists files per agent, downgrades to sequential if overlap
+- User confirmation before spawning parallel work
+- Integration checkpoint after parallel steps complete
+
+**Compaction:**
+- `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` set to 65% in `.claude/settings.json`
+
+---
+
 ### Breaking: CLAUDE.md Split
 
 Toolkit instructions have moved out of `CLAUDE.md` into `.claude/rules/toolkit.md`.

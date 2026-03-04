@@ -30,10 +30,11 @@ flowchart TD
 | `/explore` | Think through the problem before you start building |
 | `/create-plan` | Write a step-by-step plan with status tracking |
 | `/execute` | Build it, updating the plan as you go |
-| `/review` | Review your work — reports issues only, won't fix until you say so |
+| `/review` | Adaptive multi-lens review — reports issues only, won't fix until you say so |
 | `/peer-review` | Evaluate feedback from other AI models |
 | `/document` | Update your README and docs to match what was built |
 | `/create-issue` | Create a GitHub issue (asks you questions first) |
+| `/pair-debug` | Focused debugging partner — investigate before fixing |
 | `/ask-gpt` | Debate your work with ChatGPT (3 rounds) |
 | `/ask-gemini` | Debate your work with Gemini (3 rounds) |
 | `/package-review` | Bundle your work into one file for external review |
