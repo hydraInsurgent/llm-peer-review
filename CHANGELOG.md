@@ -1,19 +1,24 @@
 # Changelog
 
+## 1.2
+
+- **`/review` simplified** — Replaced overengineered 4-step pipeline (type detection, lens lookup, aggregation) with two-mode approach: small changes get a single pass, bigger changes get 3 focused sub-agents (Security, Code Quality, Logic). Removed "What Claude Missed" self-check.
+- **Toolkit versioning** — Setup scripts now display version number in banner. VERSION file at repo root.
+
+---
+
 ## 1.1
 
 ### Ruflo Patterns
 
 Adopted 5 patterns from AI research to improve the core commands.
 
-**`/review` — Adaptive Multi-Lens Review:**
-- Auto-detects change type + scope + confidence before reviewing
-- Selects lenses based on type (small fix, feature, codebase, plan, docs, config)
-- Runs parallel sub-reviews for multi-lens reviews
-- New severity: 🚫 Block / ⚠️ Warn / 💡 Suggest (replaces CRITICAL/HIGH/MEDIUM/LOW)
+**`/review` — Simplified Two-Mode Review:**
+- Small changes (1-2 files): single-pass review, no sub-agents
+- Bigger changes (3+ files): three focused sub-agents in parallel — Security, Code Quality, Logic
+- Severity: 🚫 Block / ⚠️ Warn / 💡 Suggest
 - Finding IDs (R1, R2...) — say "fix R2 and R5" to approve specific fixes
-- Two-layer output: scannable summary at top, detailed findings by lens below
-- "What Claude Missed" self-check when fixing issues not in the review report
+- Staff Engineer Check for big-picture evaluation
 
 **`/pair-debug` — New Command:**
 - Focused debugging partner (not a teacher — that's `/learning-opportunity`)
@@ -55,7 +60,7 @@ Toolkit instructions have moved out of `CLAUDE.md` into `.claude/rules/toolkit.m
 ### New Features
 
 - **LESSONS.md** — Track what you learn across sessions. Created on first setup, never overwritten.
-- **Staff Engineer Check** in `/review` — Adds a production-readiness lens: "What would you push back on?"
+- **Staff Engineer Check** in `/review` — Big-picture evaluation: right approach, shortcuts to clean up, what to push back on
 - **Outcomes section** in `/create-plan` — Record what actually happened vs. what was planned
 - **"When to Stop"** in `/execute` — Stop and re-plan on critical blockers instead of pushing through
 - **Subagent Strategy** — Guidance for Claude to use subagents for research and parallelize independent work
