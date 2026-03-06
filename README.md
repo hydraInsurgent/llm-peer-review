@@ -30,7 +30,7 @@ flowchart TD
 | `/explore` | Think through the problem before you start building |
 | `/create-plan` | Write a step-by-step plan with status tracking |
 | `/execute` | Build it, updating the plan as you go |
-| `/review` | Adaptive multi-lens review — reports issues only, won't fix until you say so |
+| `/review` | Two-mode code review (single pass or 3 focused sub-agents) — reports issues only, won't fix until you say so |
 | `/peer-review` | Evaluate feedback from other AI models |
 | `/document` | Update your README and docs to match what was built |
 | `/create-issue` | Create a GitHub issue (asks you questions first) |
@@ -169,7 +169,7 @@ Tell your AI agent (Claude Code, Cursor, etc.): "Set up the workflow from this r
 
 ## Update an Existing Project
 
-Re-run the same setup command. It's safe to rerun — commands, scripts, and toolkit rules get updated; your `CLAUDE.md`, `LESSONS.md`, and `settings.local.json` are never overwritten.
+Re-run the same setup command. It's safe to rerun - commands, scripts, and toolkit rules get updated; your `CLAUDE.md`, `LESSONS.md`, and `settings.local.json` are never overwritten. Your `.gitignore` is merged (new toolkit entries are added, your custom entries are preserved).
 
 **Coming from before the CLAUDE.md split?** If your `CLAUDE.md` has toolkit rules mixed in (workflow, permissions, slash commands table), those now live in `.claude/rules/toolkit.md`. After re-running setup, edit your `CLAUDE.md` to keep only project-specific info. See [CHANGELOG.md](CHANGELOG.md) for details.
 
