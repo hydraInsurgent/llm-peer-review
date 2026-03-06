@@ -156,10 +156,20 @@ echo "  Copying .env.local.example ..."
 cp "$TOOLKIT_ROOT/.env.local.example" "$TARGET/.env.local.example"
 OVERWROTE+=(.env.local.example)
 
-# ─── .gitignore and .gitattributes (upstream-owned — always copy) ─
-echo "  Copying .gitignore ..."
-cp "$TOOLKIT_ROOT/.gitignore" "$TARGET/.gitignore"
-OVERWROTE+=(.gitignore)
+# ─── .gitignore (merge — preserve user entries, add toolkit lines) ─
+if [ -f "$TARGET/.gitignore" ]; then
+  echo "  Merging .gitignore (preserving your entries) ..."
+  while IFS= read -r line; do
+    if ! grep -qxF "$line" "$TARGET/.gitignore"; then
+      echo "$line" >> "$TARGET/.gitignore"
+    fi
+  done < "$TOOLKIT_ROOT/.gitignore"
+  OVERWROTE+=(".gitignore (merged)")
+else
+  echo "  Copying .gitignore ..."
+  cp "$TOOLKIT_ROOT/.gitignore" "$TARGET/.gitignore"
+  OVERWROTE+=(.gitignore)
+fi
 
 echo "  Copying .gitattributes ..."
 cp "$TOOLKIT_ROOT/.gitattributes" "$TARGET/.gitattributes"

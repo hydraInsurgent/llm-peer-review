@@ -58,7 +58,7 @@ We follow this flow for features:
 - **Use subagents for research and exploration** freely — no need to ask
 - **One focused task per subagent** — don't bundle unrelated work
 - **Don't duplicate work** — if a subagent is researching something, don't also do it yourself
-- **Parallelize independent plan steps** automatically — only ask when it's unclear whether steps are truly independent
+- **Parallelize independent plan steps** — tell the user what each parallel task will do and wait for approval before starting
 
 ---
 
