@@ -100,7 +100,7 @@ We follow this flow for features:
 
 ## Permissions
 
-This project uses two settings files. `settings.json` is committed to the repo and provides a shared baseline (temp-file permissions for debate scripts and shared environment settings like compaction threshold). `settings.local.json` is user-specific and not overwritten on re-setup — your real permissions live here.
+This project uses two settings files. `settings.json` is committed to the repo and provides a shared baseline (temp-file permissions for debate scripts). `settings.local.json` is user-specific and not overwritten on re-setup — your real permissions live here.
 
 These are defined in `.claude/settings.local.json`. Each one exists for a reason:
 

@@ -32,7 +32,7 @@ Each sub-agent should use the severity scale and Finding ID format below.
 
 ## Finding IDs
 
-Every finding gets a unique ID: **R1**, **R2**, **R3**, etc. This lets the user say "fix R2 and R5" to approve specific fixes.
+Every finding gets a unique ID: **R1**, **R2**, **R3**, etc. This lets the user say "fix R2 and R5" to approve specific fixes. When combining results from sub-agents, renumber all findings into a single R1, R2, R3 sequence.
 
 ## Output Format
 

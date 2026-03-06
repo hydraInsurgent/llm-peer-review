@@ -50,7 +50,11 @@ Key architectural/implementation choices made during exploration:
   - [ ] 🟥 Subtask 1
   - [ ] 🟥 Subtask 2
 
-- [ ] 🟥 **Step 2: [Name]** `[sequential]` → depends on: Step 1
+- [ ] 🟥 **Step 2: [Name]** `[parallel]` → delivers: [what this step produces]
+  - [ ] 🟥 Subtask 1
+  - [ ] 🟥 Subtask 2
+
+- [ ] 🟥 **Step 3: [Name]** `[sequential]` → depends on: Steps 1, 2
   - [ ] 🟥 Subtask 1
   - [ ] 🟥 Subtask 2
 
