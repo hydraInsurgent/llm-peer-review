@@ -159,6 +159,8 @@ OVERWROTE+=(.env.local.example)
 # ─── .gitignore (merge — preserve user entries, add toolkit lines) ─
 if [ -f "$TARGET/.gitignore" ]; then
   echo "  Merging .gitignore (preserving your entries) ..."
+  # Ensure target ends with a newline before appending
+  [ -n "$(tail -c 1 "$TARGET/.gitignore")" ] && echo "" >> "$TARGET/.gitignore"
   while IFS= read -r line; do
     if ! grep -qxF "$line" "$TARGET/.gitignore"; then
       echo "$line" >> "$TARGET/.gitignore"
