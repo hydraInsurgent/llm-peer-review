@@ -10,6 +10,7 @@
 2. **Ask questions** - If something is unclear, ask before assuming
 3. **Explain simply** - Use plain English, avoid jargon
 4. **Show your work** - Tell me what you're doing and why
+5. **Use the Skill tool for /create-plan and /review** - Never manually replicate these commands. If the user says "create plan" or "review", invoke the command via the Skill tool so the template is followed.
 
 ### Our Workflow
 
