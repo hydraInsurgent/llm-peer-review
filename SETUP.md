@@ -165,3 +165,5 @@ GEMINI_API_KEY=AIza-your-key-here
 - Type `/explore` to verify the commands are working
 
 You're set up. Now read the [Add to a New Project](README.md#add-to-a-new-project) section in the README to copy the toolkit into your actual projects.
+
+> **Important:** Do not copy command files to `~/.claude/commands/` (your home directory). Commands should only live inside each project's `.claude/commands/` folder. Global copies in the home directory override project copies, which means you'll get outdated commands even after updating the toolkit. If you have files there, delete them.

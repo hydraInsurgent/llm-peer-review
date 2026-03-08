@@ -174,5 +174,6 @@ The user can now open their project in Cursor or Claude Code and type `/` to see
 - **Commands exist but don't appear in the editor** - Make sure the editor workspace root is the project folder that contains `.claude/`, not a parent directory
 - **Script errors with `/bin/bash^M` or "bad interpreter"** - Line-ending issue. Delete the folder and clone fresh, or run `git add --renormalize . && git checkout -- .`
 - **Setup command fails partway through** - Safe to rerun. Leftover `/tmp/tmp.*` folders are harmless
+- **Commands seem outdated or missing sections** - Delete any toolkit command files from `~/.claude/commands/`. Global copies override project commands and cause stale behavior
 
 </reference>

@@ -124,6 +124,42 @@ if [ "$PREFLIGHT_OK" = false ]; then
   exit 1
 fi
 
+# ─── Check for conflicting global commands ───────────────────
+# If ~/.claude/commands/ has files with the same names as toolkit commands,
+# they can override project-level commands and cause stale behavior.
+GLOBAL_CMD_DIR="$HOME/.claude/commands"
+if [ -d "$GLOBAL_CMD_DIR" ]; then
+  CONFLICTS=()
+  for src in "$TOOLKIT_ROOT/.claude/commands/"*.md; do
+    fname="$(basename "$src")"
+    if [ -f "$GLOBAL_CMD_DIR/$fname" ]; then
+      CONFLICTS+=("$fname")
+    fi
+  done
+
+  if [ ${#CONFLICTS[@]} -gt 0 ]; then
+    echo "  ┌────────────────────────────────────────────────────┐"
+    echo "  │  WARNING: Global commands may override this setup  │"
+    echo "  └────────────────────────────────────────────────────┘"
+    echo ""
+    echo "    Found ${#CONFLICTS[@]} file(s) in $GLOBAL_CMD_DIR/"
+    echo "    that share names with toolkit commands:"
+    echo ""
+    for f in "${CONFLICTS[@]}"; do
+      echo "      - $f"
+    done
+    echo ""
+    echo "    Global commands (~/.claude/commands/) can override"
+    echo "    project commands (.claude/commands/), so you may get"
+    echo "    outdated behavior even after updating the toolkit."
+    echo ""
+    echo "    To fix: delete the global copies listed above."
+    echo "    They are not needed - the toolkit puts commands in"
+    echo "    each project's .claude/commands/ folder instead."
+    echo ""
+  fi
+fi
+
 # ─── Create target directories ───────────────────────────────
 mkdir -p "$TARGET/.claude/commands"
 mkdir -p "$TARGET/.claude/rules"

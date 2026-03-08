@@ -132,6 +132,42 @@ if (-not $PreflightOk) {
   exit 1
 }
 
+# ─── Check for conflicting global commands ───────────────────
+# If ~/.claude/commands/ has files with the same names as toolkit commands,
+# they can override project-level commands and cause stale behavior.
+$GlobalCmdDir = Join-Path $HOME ".claude\commands"
+if (Test-Path -LiteralPath $GlobalCmdDir -PathType Container) {
+  $Conflicts = @()
+  foreach ($src in Get-ChildItem -Path $CommandsDir -Filter *.md -File) {
+    $globalFile = Join-Path $GlobalCmdDir $src.Name
+    if (Test-Path -LiteralPath $globalFile -PathType Leaf) {
+      $Conflicts += $src.Name
+    }
+  }
+
+  if ($Conflicts.Count -gt 0) {
+    Write-Host "  +----------------------------------------------------+"
+    Write-Host "  |  WARNING: Global commands may override this setup   |"
+    Write-Host "  +----------------------------------------------------+"
+    Write-Host ""
+    Write-Host "    Found $($Conflicts.Count) file(s) in $GlobalCmdDir\"
+    Write-Host "    that share names with toolkit commands:"
+    Write-Host ""
+    foreach ($f in $Conflicts) {
+      Write-Host "      - $f"
+    }
+    Write-Host ""
+    Write-Host "    Global commands (~/.claude/commands/) can override"
+    Write-Host "    project commands (.claude/commands/), so you may get"
+    Write-Host "    outdated behavior even after updating the toolkit."
+    Write-Host ""
+    Write-Host "    To fix: delete the global copies listed above."
+    Write-Host "    They are not needed - the toolkit puts commands in"
+    Write-Host "    each project's .claude/commands/ folder instead."
+    Write-Host ""
+  }
+}
+
 New-Item -ItemType Directory -Force -Path (Join-Path $Target ".claude\commands") | Out-Null
 New-Item -ItemType Directory -Force -Path (Join-Path $Target ".claude\rules") | Out-Null
 New-Item -ItemType Directory -Force -Path (Join-Path $Target ".claude\ui-reference") | Out-Null
