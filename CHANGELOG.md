@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.1
+
+- **XML structural tags** - Added XML tags (`<rules>`, `<procedure>`, `<template>`, `<output_format>`, `<conditions>`, `<guidelines>`, `<reference>`, `<phase>`, `<examples>`) to 9 AI-parsed files. Helps AI models distinguish content types (rules vs templates vs examples). Markdown headers stay for readability; XML wraps content blocks for parsing. No behavior change for users.
+
+---
+
 ## 1.4
 
 - **`/ui-spec` command** - Generate a UI design spec (colors, fonts, accessibility rules) linked to a plan. Picks from curated reference data, outputs a `UI-SPEC-*.md` file, and tags plan steps with `[UI]`.
