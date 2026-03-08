@@ -8,7 +8,7 @@ You are updating documentation after code changes.
 - **README.md** - Project overview for humans
 - **LESSONS.md** - Learning log: what worked, what didn't, mistakes to avoid (user-owned)
 - **CHANGELOG.md** - User-facing changes: new features, breaking changes (update if it exists)
-- **`.claude/rules/toolkit.md`** - Toolkit workflow rules (toolkit-owned, **do not edit** — overwritten on update)
+- **`.claude/rules/toolkit.md`** - Toolkit workflow rules (toolkit-owned, **do not edit** - overwritten on update)
 
 Keep README.md and CLAUDE.md consistent with each other. Never edit `toolkit.md`.
 
@@ -28,10 +28,10 @@ For each changed file:
 ## 3. Update Relevant Documentation
 
 **What goes where:**
-- **README.md** — New features, changed behavior, setup instructions, new commands
-- **CLAUDE.md** — Project description, tech stack, team info, coding preferences
-- **CHANGELOG.md** — User-facing changes: new features, breaking changes, fixes (if the file exists)
-- **LESSONS.md** — Prompt the user: "Did you learn anything this session worth logging?"
+- **README.md** - New features, changed behavior, setup instructions, new commands
+- **CLAUDE.md** - Project description, tech stack, team info, coding preferences
+- **CHANGELOG.md** - User-facing changes: new features, breaking changes, fixes (if the file exists)
+- **LESSONS.md** - Prompt the user: "Did you learn anything this session worth logging?"
 
 ## 4. Documentation Style Rules
 
@@ -44,7 +44,7 @@ For each changed file:
 ❌ No enterprise fluff
 ❌ No outdated information
 ❌ No assumptions without verification
-❌ Don't edit `toolkit.md` — it's auto-managed
+❌ Don't edit `toolkit.md` - it's auto-managed
 
 ## 5. Ask if Uncertain
 

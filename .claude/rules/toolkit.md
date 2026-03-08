@@ -1,6 +1,6 @@
 # Toolkit Rules
 
-<!-- This file is managed by the LLM Peer Review toolkit. Do not edit — changes will be overwritten on update. -->
+<!-- This file is managed by the LLM Peer Review toolkit. Do not edit - changes will be overwritten on update. -->
 
 ## How We Work Together
 
@@ -42,7 +42,7 @@ We follow this flow for features:
 | `/create-issue` | Create GitHub issues (ask questions first, keep short) |
 | `/ask-gpt` | AI peer review with ChatGPT debate (3 rounds) |
 | `/ask-gemini` | AI peer review with Gemini debate (3 rounds) |
-| `/pair-debug` | Focused debugging partner — investigate before fixing |
+| `/pair-debug` | Focused debugging partner - investigate before fixing |
 | `/package-review` | Review a package/codebase |
 | `/learning-opportunity` | Pause to learn a concept at 3 levels of depth |
 
@@ -60,10 +60,10 @@ We follow this flow for features:
 
 ### Subagent Strategy
 
-- **Use subagents for research and exploration** freely — no need to ask
-- **One focused task per subagent** — don't bundle unrelated work
-- **Don't duplicate work** — if a subagent is researching something, don't also do it yourself
-- **Parallelize independent plan steps** — tell the user what each parallel task will do and wait for approval before starting
+- **Use subagents for research and exploration** freely - no need to ask
+- **One focused task per subagent** - don't bundle unrelated work
+- **Don't duplicate work** - if a subagent is researching something, don't also do it yourself
+- **Parallelize independent plan steps** - tell the user what each parallel task will do and wait for approval before starting
 
 ---
 
@@ -105,7 +105,7 @@ We follow this flow for features:
 
 ## Permissions
 
-This project uses two settings files. `settings.json` is committed to the repo and provides a shared baseline (temp-file permissions for debate scripts). `settings.local.json` is user-specific and not overwritten on re-setup — your real permissions live here.
+This project uses two settings files. `settings.json` is committed to the repo and provides a shared baseline (temp-file permissions for debate scripts). `settings.local.json` is user-specific and not overwritten on re-setup - your real permissions live here.
 
 These are defined in `.claude/settings.local.json`. Each one exists for a reason:
 
@@ -115,7 +115,7 @@ These are defined in `.claude/settings.local.json`. Each one exists for a reason
 | `git push`, `git pull`, `git fetch` | Syncing with remote repositories |
 | `git add`, `git rm`, `git branch` | Staging files, removing files, managing branches |
 | `git config`, `git remote set-url` | Git setup (e.g. safe.directory, remote URLs) |
-| `gh repo create`, `gh repo view` | Repository scaffolding and viewing |
+| `gh repo create`, `gh repo view`, `gh repo edit` | Repository scaffolding, viewing, and settings |
 | `gh issue create`, `gh issue view`, `gh issue close` | `/create-issue` command and issue management |
 | `gh api`, `gh release list` | GitHub API calls and release checks |
 | `npm install`, `npm uninstall` | Managing dependencies |

@@ -26,9 +26,9 @@ Each sub-agent should use the severity scale and Finding ID format below.
 
 ## Severity Levels
 
-- 🚫 **Block** — Will break the app. Must fix before merging.
-- ⚠️ **Warn** — Should fix before shipping. Risk of bugs or tech debt.
-- 💡 **Suggest** — Nice to have. Improves quality but not urgent.
+- 🚫 **Block** - Will break the app. Must fix before merging.
+- ⚠️ **Warn** - Should fix before shipping. Risk of bugs or tech debt.
+- 💡 **Suggest** - Nice to have. Improves quality but not urgent.
 
 ## Finding IDs
 
@@ -38,21 +38,21 @@ Every finding gets a unique ID: **R1**, **R2**, **R3**, etc. This lets the user 
 
 ### Top Issues (scannable summary)
 ```
-🚫 2 Blocks: R1 (file:line — one-line description), R3 (file:line — one-line description)
-⚠️ 1 Warn: R2 (file:line — one-line description)
-💡 1 Suggest: R4 (file:line — one-line description)
+🚫 2 Blocks: R1 (file:line - one-line description), R3 (file:line - one-line description)
+⚠️ 1 Warn: R2 (file:line - one-line description)
+💡 1 Suggest: R4 (file:line - one-line description)
 ```
 
 ### ✅ Looks Good
-- [What's working well — 2-3 items]
+- [What's working well - 2-3 items]
 
 ### 🔍 Findings
 
-- **R1** 🚫 `file:line` — [Issue description in plain English]
+- **R1** 🚫 `file:line` - [Issue description in plain English]
   - **Why:** [Why this matters]
-  - **Fix direction:** [What to change — not the exact code, just the approach]
+  - **Fix direction:** [What to change - not the exact code, just the approach]
 
-- **R2** ⚠️ `file:line` — [Issue description]
+- **R2** ⚠️ `file:line` - [Issue description]
   - **Why:** [Why this matters]
   - **Fix direction:** [Approach]
 
@@ -74,9 +74,9 @@ Use the same severity scale (Block/Warn/Suggest) and Finding IDs (D1, D2, D3...)
 ### 🏗️ Staff Engineer Check
 
 After the standard review, step back and evaluate as a staff engineer:
-- **Right approach?** — Is the overall design sound, not just the code?
-- **Shortcuts to clean up?** — Anything that works now but needs fixing before production?
-- **What would you push back on?** — What would a senior engineer flag before merging?
+- **Right approach?** - Is the overall design sound, not just the code?
+- **Shortcuts to clean up?** - Anything that works now but needs fixing before production?
+- **What would you push back on?** - What would a senior engineer flag before merging?
 
 ### 📊 Summary
 - Files reviewed: X

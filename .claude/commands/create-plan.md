@@ -21,7 +21,7 @@ Based on our full exchange, produce a markdown plan document.
 - `[parallel]` steps: add `→ delivers: [what this step produces]`
 - `[sequential]` steps: add `→ depends on: Step N`
 - Parallel steps must be independent in both **files AND environment** (dependencies, services, migrations, env vars)
-- If all steps are sequential, still tag them — the tags confirm you thought about execution order
+- If all steps are sequential, still tag them - the tags confirm you thought about execution order
 
 For plans with fewer than 3 steps, skip the tags.
 
@@ -34,7 +34,7 @@ For plans with fewer than 3 steps, skip the tags.
 ## TLDR
 Short summary of what we're building and why.
 
-## Goal State (optional — include for features with 3+ steps)
+## Goal State (optional - include for features with 3+ steps)
 **Current State:** Where things are now.
 **Goal State:** Where we want to end up.
 

@@ -24,9 +24,9 @@ Wait for approval before continuing.
 
 ### Agent Contract
 Each parallel agent must:
-1. **Declare touched files** — list every file it will create or modify
-2. **State assumptions** — what it expects to be true about the codebase
-3. **Provide an integration checklist** — what the next step needs to verify
+1. **Declare touched files** - list every file it will create or modify
+2. **State assumptions** - what it expects to be true about the codebase
+3. **Provide an integration checklist** - what the next step needs to verify
 
 ### Integration Checkpoint
 After all parallel steps finish, always run a sequential checkpoint:
@@ -59,7 +59,7 @@ When the plan has a `## UI Specification` section linking to a `UI-SPEC-*.md` fi
 
 ## When to Stop
 
-If you hit a critical blocker — a wrong assumption in the plan, a fundamental incompatibility, or a dependency that doesn't work as expected — **stop executing**. Don't push through a broken plan. Instead:
+If you hit a critical blocker - a wrong assumption in the plan, a fundamental incompatibility, or a dependency that doesn't work as expected - **stop executing**. Don't push through a broken plan. Instead:
 1. Explain what went wrong and why
 2. Suggest re-running `/create-plan` with what you've learned
 

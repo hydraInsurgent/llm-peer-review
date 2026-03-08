@@ -98,7 +98,7 @@ Then log in to GitHub CLI:
 ```bash
 gh auth login
 ```
-Follow the prompts — it opens a browser to authenticate.
+Follow the prompts - it opens a browser to authenticate.
 
 ### Step 4: Install Cursor
 
@@ -134,6 +134,8 @@ Save these somewhere safe. You'll paste them in Step 8.
 
 ### Step 7: Clone This Repo
 
+This step installs the toolkit itself. You'll copy it into your actual projects later using the setup command.
+
 Run this in your terminal (PowerShell or WSL on Windows, Terminal on Mac):
 ```bash
 git clone https://github.com/mayankmankhand/llm-peer-review.git
@@ -160,6 +162,6 @@ GEMINI_API_KEY=AIza-your-key-here
   - **Windows (PowerShell/native):** `C:\Users\your-username\llm-peer-review`
   - **Windows (WSL):** `\\wsl.localhost\Ubuntu\home\your-username\llm-peer-review`
   - **Mac:** `/Users/your-username/llm-peer-review`
-- Type `/explore` to test your first command
+- Type `/explore` to verify the commands are working
 
-You're set up. Read the [Add to a New Project](README.md#add-to-a-new-project) section in the README to use this toolkit in your actual projects.
+You're set up. Now read the [Add to a New Project](README.md#add-to-a-new-project) section in the README to copy the toolkit into your actual projects.

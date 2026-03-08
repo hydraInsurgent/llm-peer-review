@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# setup.sh — Copy the LLM Peer Review toolkit into any project.
+# setup.sh - Copy the LLM Peer Review toolkit into any project.
 # Compatible with Bash 3.2+ (macOS default), Linux, and WSL.
 #
 # Usage:
@@ -134,7 +134,7 @@ mkdir -p "$TARGET/scripts"
 OVERWROTE=()
 SKIPPED=()
 
-# ─── Command files (upstream-owned — always copy, warn if overwriting) ─
+# ─── Command files (upstream-owned - always copy, warn if overwriting) ─
 echo "  Copying .claude/commands/ ..."
 for src in "$TOOLKIT_ROOT/.claude/commands/"*.md; do
   fname="$(basename "$src")"
@@ -145,24 +145,26 @@ for src in "$TOOLKIT_ROOT/.claude/commands/"*.md; do
   OVERWROTE+=("commands/$fname")
 done
 
-# ─── Scripts (runtime scripts only — setup scripts stay in toolkit repo) ──────────────────
+# ─── Scripts (runtime scripts only - setup scripts stay in toolkit repo) ──────────────────
 echo "  Copying scripts/ ..."
 # Only copy runtime scripts (ask-gpt.js, ask-gemini.js) - setup scripts stay in toolkit repo
 cp "$TOOLKIT_ROOT/scripts/ask-gpt.js"    "$TARGET/scripts/"
 cp "$TOOLKIT_ROOT/scripts/ask-gemini.js" "$TARGET/scripts/"
 OVERWROTE+=(scripts/ask-gpt.js scripts/ask-gemini.js)
 
-# ─── .env.local.example (template — safe to overwrite) ───────
+# ─── .env.local.example (template - safe to overwrite) ───────
 echo "  Copying .env.local.example ..."
 cp "$TOOLKIT_ROOT/.env.local.example" "$TARGET/.env.local.example"
 OVERWROTE+=(.env.local.example)
 
-# ─── .gitignore (merge — preserve user entries, add toolkit lines) ─
+# ─── .gitignore (merge - preserve user entries, add toolkit lines) ─
 if [ -f "$TARGET/.gitignore" ]; then
   echo "  Merging .gitignore (preserving your entries) ..."
   # Ensure target ends with a newline before appending
   [ -n "$(tail -c 1 "$TARGET/.gitignore")" ] && echo "" >> "$TARGET/.gitignore"
   while IFS= read -r line; do
+    # Skip blank lines and comments to avoid accumulating duplicates on repeated runs
+    [ -z "$line" ] || [[ "$line" == \#* ]] && continue
     if ! grep -qxF "$line" "$TARGET/.gitignore"; then
       echo "$line" >> "$TARGET/.gitignore"
     fi
@@ -178,7 +180,7 @@ echo "  Copying .gitattributes ..."
 cp "$TOOLKIT_ROOT/.gitattributes" "$TARGET/.gitattributes"
 OVERWROTE+=(.gitattributes)
 
-# ─── Toolkit rules (upstream-owned — always copy) ────────────
+# ─── Toolkit rules (upstream-owned - always copy) ────────────
 echo "  Copying .claude/rules/toolkit.md ..."
 if [ -f "$TARGET/.claude/rules/toolkit.md" ]; then
   echo "    ↻ overwriting toolkit.md (this is managed by the toolkit)"
@@ -186,7 +188,7 @@ fi
 cp "$TOOLKIT_ROOT/.claude/rules/toolkit.md" "$TARGET/.claude/rules/toolkit.md"
 OVERWROTE+=(.claude/rules/toolkit.md)
 
-# ─── UI reference data (upstream-owned — always copy) ────────
+# ─── UI reference data (upstream-owned - always copy) ────────
 echo "  Copying .claude/ui-reference/ ..."
 for src in "$TOOLKIT_ROOT/.claude/ui-reference/"*.md; do
   fname="$(basename "$src")"
@@ -200,7 +202,7 @@ done
 # ─── Project-owned files (skip if already exist) ─────────────
 for f in CLAUDE.md LESSONS.md .claude/settings.local.json; do
   if [ -f "$TARGET/$f" ]; then
-    echo "  Skipping $f — already exists (yours to customize)"
+    echo "  Skipping $f - already exists (yours to customize)"
     SKIPPED+=("$f")
   else
     echo "  Copying $f ..."
@@ -217,7 +219,7 @@ echo "  ================================"
 echo ""
 
 if [ ${#SKIPPED[@]} -gt 0 ]; then
-  echo "    Skipped (already existed — not overwritten):"
+  echo "    Skipped (already existed - not overwritten):"
   for f in "${SKIPPED[@]}"; do
     echo "      - $f"
   done
@@ -241,7 +243,7 @@ echo "           GEMINI_API_KEY  →  https://aistudio.google.com/apikey"
 echo ""
 echo "      3. Open the folder in Cursor and run /explore to start your first workflow."
 echo ""
-echo "      Steps 1 and 2 are optional — skip them if you don't"
+echo "      Steps 1 and 2 are optional - skip them if you don't"
 echo "      need /ask-gpt or /ask-gemini."
 echo ""
 echo "    Tip: To update commands and scripts, run setup again from"

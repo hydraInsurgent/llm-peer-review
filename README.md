@@ -6,7 +6,7 @@ Whether you're speccing a feature, conducting competitive research, building a p
 
 This is the same consensus/divergence synthesis that [Perplexity's Model Council](https://www.perplexity.ai/hub/blog/introducing-model-council) produces and what [Karpathy's LLM Council](https://github.com/karpathy/llm-council) does for general Q&A, applied to a full project lifecycle with multi-round adversarial debate and an implementation workflow.
 
-**Inspired by [Zevi Arnovitz's workflow on Lenny's Podcast](https://www.youtube.com/watch?v=1em64iUFt3U).** The key difference is that Zevi manually conducts peer reviews by copying feedback from one model to another because he likes seeing the reasoning from tools like ChatGPT or Gemini. This toolkit automates the entire process with two slash commands — `/ask-gpt` and `/ask-gemini` — that handle the multi-round debate loop for you.
+**Inspired by [Zevi Arnovitz's workflow on Lenny's Podcast](https://www.youtube.com/watch?v=1em64iUFt3U).** The key difference is that Zevi manually conducts peer reviews by copying feedback from one model to another because he likes seeing the reasoning from tools like ChatGPT or Gemini. This toolkit automates the entire process with two slash commands - `/ask-gpt` and `/ask-gemini` - that handle the multi-round debate loop for you.
 
 Works for product specs, research plans, competitive analysis, and code equally.
 
@@ -34,11 +34,11 @@ flowchart TD
 | `/create-plan` | Write a step-by-step plan with status tracking |
 | `/ui-spec` | Generate a UI design spec (colors, fonts, accessibility rules) for a plan |
 | `/execute` | Build it, updating the plan as you go |
-| `/review` | Two-mode code review (single pass or 3 focused sub-agents) — reports issues only, won't fix until you say so |
+| `/review` | Two-mode code review (single pass or 3 focused sub-agents) - reports issues only, won't fix until you say so |
 | `/peer-review` | Evaluate feedback from other AI models |
 | `/document` | Update your README and docs to match what was built |
 | `/create-issue` | Create a GitHub issue (asks you questions first) |
-| `/pair-debug` | Focused debugging partner — investigate before fixing |
+| `/pair-debug` | Focused debugging partner - investigate before fixing |
 | `/ask-gpt` | Debate your work with ChatGPT (3 rounds) |
 | `/ask-gemini` | Debate your work with Gemini (3 rounds) |
 | `/package-review` | Bundle your work into one file for external review |
@@ -64,7 +64,7 @@ This toolkit runs on **macOS, Linux, or WSL** (Windows Subsystem for Linux). Win
 
 ## Setting Up a Brand New Computer
 
-> **Never set up a dev environment before?** Follow the step-by-step guide in **[SETUP.md](SETUP.md)**. It covers Windows (WSL), Mac, Node.js, GitHub CLI, Cursor, and API keys — everything you need from scratch.
+> **Never set up a dev environment before?** Follow the step-by-step guide in **[SETUP.md](SETUP.md)**. It covers Windows (WSL), Mac, Node.js, GitHub CLI, Cursor, and API keys - everything you need from scratch.
 
 If you already have Node.js, git, and Cursor installed, skip ahead to [Add to a New Project](#add-to-a-new-project).
 
@@ -74,7 +74,7 @@ If you already have Node.js, git, and Cursor installed, skip ahead to [Add to a 
 
 ## Add to a New Project
 
-This isn't an app you install — it's a set of instructions that live in your project folder. Once they're there, type `/` in your editor and the commands show up. Four ways to set it up:
+This isn't an app you install - it's a set of instructions that live in your project folder. Once they're there, type `/` in your editor and the commands show up. Four ways to set it up:
 
 ### Option A: Install a Convenient Command (Easiest - Recommended)
 
@@ -117,7 +117,7 @@ Pick the script that matches your shell. You can run it in two ways:
 bash /path/to/llm-peer-review/scripts/setup/setup.sh /path/to/your-project
 ```
 
-**PowerShell (for setup only — see [Requirements](#requirements)):**
+**PowerShell (for setup only - see [Requirements](#requirements)):**
 ```powershell
 powershell -ExecutionPolicy Bypass -File C:\path\to\llm-peer-review\scripts\setup\setup.ps1 -Target "C:\path\to\your-project"
 ```
@@ -138,7 +138,7 @@ powershell -ExecutionPolicy Bypass -File C:\path\to\llm-peer-review\scripts\setu
 
 > **Note:** If you run the script from inside the toolkit repository without specifying a target, it will show an error to prevent accidentally copying files into the wrong place.
 
-The scripts copy commands, runtime scripts (ask-gpt.js, ask-gemini.js), and toolkit rules to your project. Setup scripts stay in the toolkit repo and are not copied. CLAUDE.md, LESSONS.md, and settings.local.json are skipped if they already exist — those are yours to customize. Toolkit rules (`.claude/rules/toolkit.md`) are always updated.
+The scripts copy commands, runtime scripts (ask-gpt.js, ask-gemini.js), and toolkit rules to your project. Setup scripts stay in the toolkit repo and are not copied. CLAUDE.md, LESSONS.md, and settings.local.json are skipped if they already exist - those are yours to customize. Toolkit rules (`.claude/rules/toolkit.md`) are always updated.
 
 ### Option C: Do It Manually
 
@@ -182,7 +182,7 @@ Re-run the same setup command. It's safe to rerun - commands, scripts, and toolk
 
 ## How `/ask-gpt` and `/ask-gemini` Work
 
-`/ask-gpt` and `/ask-gemini` run an automated debate between Claude and another AI about your code or plan. You don't have to copy anything manually — it handles the whole loop.
+`/ask-gpt` and `/ask-gemini` run an automated debate between Claude and another AI about your code or plan. You don't have to copy anything manually - it handles the whole loop.
 
 ### Example
 
@@ -226,24 +226,24 @@ Want a different perspective? Run `/ask-gemini` next.
 
 ## Customization
 
-- **CLAUDE.md** — Your project-specific instructions. Describe your project, tech stack, and preferences here.
-- **`.claude/rules/toolkit.md`** — Toolkit workflow rules (auto-updated on setup). Don't edit this — your changes will be overwritten.
-- **Commands** — Each file in `.claude/commands/` is independent. Want `/review` to check different things? Edit `review.md`.
-- **LESSONS.md** — Track what you learn across sessions. Yours to customize.
+- **CLAUDE.md** - Your project-specific instructions. Describe your project, tech stack, and preferences here.
+- **`.claude/rules/toolkit.md`** - Toolkit workflow rules (auto-updated on setup). Don't edit this - your changes will be overwritten.
+- **Commands** - Each file in `.claude/commands/` is independent. Want `/review` to check different things? Edit `review.md`.
+- **LESSONS.md** - Track what you learn across sessions. Yours to customize.
 
 ---
 
 ## Troubleshooting
 
-- **Commands don't show up in Cursor** — Make sure `.claude/commands/` exists in your project root with `.md` files inside. The editor workspace root must be the folder that contains `.claude/`.
-- **`/ask-gpt` or `/ask-gemini` fails** — Check that `npm install` was run and `.env.local` has valid API keys.
-- **"setup.sh: command not found"** — Run the full command from the setup instructions, not just `setup.sh` on its own.
-- **"target directory does not exist"** — Create the project folder first: `mkdir -p /path/to/project`
-- **Script errors with `/bin/bash^M` or "bad interpreter"** — This is a line-ending issue. Your shell scripts have Windows-style line endings (CRLF) instead of Unix-style (LF). Easiest fix: delete the folder and clone fresh. Advanced fix: run `git add --renormalize . && git checkout -- .` in the repo.
-- **Setup one-liner fails partway through** — Safe to rerun the command. Leftover `/tmp/tmp.*` folders are harmless and can be deleted.
+- **Commands don't show up in Cursor** - Make sure `.claude/commands/` exists in your project root with `.md` files inside. The editor workspace root must be the folder that contains `.claude/`.
+- **`/ask-gpt` or `/ask-gemini` fails** - Check that `npm install` was run and `.env.local` has valid API keys.
+- **"setup.sh: command not found"** - Run the full command from the setup instructions, not just `setup.sh` on its own.
+- **"target directory does not exist"** - Create the project folder first: `mkdir -p /path/to/project`
+- **Script errors with `/bin/bash^M` or "bad interpreter"** - This is a line-ending issue. Your shell scripts have Windows-style line endings (CRLF) instead of Unix-style (LF). Easiest fix: delete the folder and clone fresh. Advanced fix: run `git add --renormalize . && git checkout -- .` in the repo.
+- **Setup one-liner fails partway through** - Safe to rerun the command. Leftover `/tmp/tmp.*` folders are harmless and can be deleted.
 
 ---
 
 ## License
 
-MIT — see [LICENSE](LICENSE)
+MIT - see [LICENSE](LICENSE)

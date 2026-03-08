@@ -172,7 +172,7 @@ try {
   exit 1
 }
 
-# ─── .gitignore and .gitattributes (upstream-owned — always copy) ─
+# ─── .gitignore and .gitattributes (upstream-owned - always copy) ─
 foreach ($gitFile in @(".gitignore", ".gitattributes")) {
   Write-Host "  Copying $gitFile ..."
   try {
@@ -183,7 +183,7 @@ foreach ($gitFile in @(".gitignore", ".gitattributes")) {
   }
 }
 
-# ─── Toolkit rules (upstream-owned — always copy) ─
+# ─── Toolkit rules (upstream-owned - always copy) ─
 Write-Host "  Copying .claude\rules\toolkit.md ..."
 $toolkitRuleSrc = Join-Path $ToolkitRoot ".claude\rules\toolkit.md"
 $toolkitRuleDest = Join-Path $Target ".claude\rules\toolkit.md"
@@ -197,7 +197,7 @@ try {
   exit 1
 }
 
-# ─── UI reference data (upstream-owned — always copy) ─
+# ─── UI reference data (upstream-owned - always copy) ─
 Write-Host "  Copying .claude\ui-reference\ ..."
 $uiRefDir = Join-Path $ToolkitRoot ".claude\ui-reference"
 foreach ($src in Get-ChildItem -Path $uiRefDir -Filter *.md -File) {

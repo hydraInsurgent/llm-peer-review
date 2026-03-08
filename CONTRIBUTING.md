@@ -14,8 +14,8 @@ Fork the repo and adapt it to your project. The README has [setup instructions](
 
 ## Adapting Commands for Other Stacks
 
-The commands in `.claude/commands/` are written with JS/TS projects in mind, but they're just markdown files — you can edit them for any stack. For example, `/review` checks for things like "no `any` types" and "proper TypeScript interfaces." If you're working in Python, swap those for your own conventions (type hints, docstrings, etc.).
+The commands in `.claude/commands/` are written with JS/TS projects in mind, but they're just markdown files - you can edit them for any stack. For example, `/review` checks for things like "no `any` types" and "proper TypeScript interfaces." If you're working in Python, swap those for your own conventions (type hints, docstrings, etc.).
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT - see [LICENSE](LICENSE).

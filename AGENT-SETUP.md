@@ -14,7 +14,7 @@ A set of slash commands and scripts that give AI agents a structured workflow: e
 
 ## Environment
 
-Assume shell access on the user machine. Use bash on macOS/Linux/WSL, or PowerShell on native Windows for setup. Note: the debate commands (`/ask-gpt`, `/ask-gemini`) require bash/WSL — they don't work in native PowerShell.
+Assume shell access on the user machine. Use bash on macOS/Linux/WSL, or PowerShell on native Windows for setup. Note: the debate commands (`/ask-gpt`, `/ask-gemini`) require bash/WSL - they don't work in native PowerShell.
 
 ---
 
@@ -24,7 +24,7 @@ Assume shell access on the user machine. Use bash on macOS/Linux/WSL, or PowerSh
 
 The user's machine needs:
 - `git` (to clone this repo temporarily)
-- `bash` (to run the setup script — compatible with Bash 3.2+ on macOS/Linux/WSL) or PowerShell 5.1+ (native Windows)
+- `bash` (to run the setup script - compatible with Bash 3.2+ on macOS/Linux/WSL) or PowerShell 5.1+ (native Windows)
 - `node` and `npm` (only if they want the `/ask-gpt` and `/ask-gemini` commands)
 
 ### Windows note
@@ -53,10 +53,10 @@ This copies:
 - `.claude/commands/` (all slash command definitions)
 - `.claude/ui-reference/` (curated color palettes, font pairings, and UX rules for `/ui-spec`)
 - `.claude/rules/toolkit.md` (toolkit workflow rules - always updated)
-- `.claude/settings.local.json` (permission config — skipped if it already exists)
-- `scripts/` (only ask-gpt.js and ask-gemini.js — runtime scripts needed for peer review)
-- `CLAUDE.md` (project instructions template — skipped if it already exists)
-- `LESSONS.md` (learning log template — skipped if it already exists)
+- `.claude/settings.local.json` (permission config - skipped if it already exists)
+- `scripts/` (only ask-gpt.js and ask-gemini.js - runtime scripts needed for peer review)
+- `CLAUDE.md` (project instructions template - skipped if it already exists)
+- `LESSONS.md` (learning log template - skipped if it already exists)
 - `.env.local.example` (API key template)
 - `.gitignore` (ignores plan files, env files, node_modules, etc.)
 - `.gitattributes` (enforces LF line endings for shell scripts)
@@ -71,24 +71,26 @@ If the toolkit is already set up in the user's project, **run the same Step 1 co
 - `.claude/commands/` - all slash command definitions
 - `.claude/ui-reference/` - curated design reference data
 - `.claude/rules/toolkit.md` - toolkit workflow rules
-- `scripts/ask-gpt.js` and `scripts/ask-gemini.js` — runtime scripts
+- `scripts/ask-gpt.js` and `scripts/ask-gemini.js` - runtime scripts
 - `.env.local.example`, `.gitignore`, `.gitattributes`
 
 **What's preserved** (skipped if it already exists):
-- `CLAUDE.md` — the user's project-specific instructions
-- `LESSONS.md` — the user's learning log
-- `.claude/settings.local.json` — the user's permission config
+- `CLAUDE.md` - the user's project-specific instructions
+- `LESSONS.md` - the user's learning log
+- `.claude/settings.local.json` - the user's permission config
 
 **Migrating from the old CLAUDE.md (pre-split):** If the user's `CLAUDE.md` contains toolkit rules (workflow, slash commands table, permissions table, git workflow, subagent strategy), those rules now live in `.claude/rules/toolkit.md` and are auto-loaded. The user should:
 1. Re-run setup (Step 1 above) to get the new `toolkit.md`
 2. Edit their `CLAUDE.md` to keep only project-specific info (About This Project, Who I Am, My Preferences)
-3. Remove the toolkit sections from their `CLAUDE.md` — they're now managed automatically
+3. Remove the toolkit sections from their `CLAUDE.md` - they're now managed automatically
 
 If the user wants a completely fresh `CLAUDE.md` template, they can delete theirs and rerun setup.
 
-**What's new in v1.2:** After re-running setup:
-- `/review` simplified — two modes: small changes (single pass) or bigger changes (3 focused sub-agents: Security, Code Quality, Logic)
-- Toolkit now includes versioning (displayed during setup)
+**What's new in v1.4:** After re-running setup:
+- `/ui-spec` command for generating UI design specs (colors, fonts, accessibility rules) linked to a plan
+- UI reference data (15 color palettes, 10 font pairings, 20 UX rules) in `.claude/ui-reference/`
+- `/execute` and `/review` are now UI-aware when a plan has a linked UI-SPEC
+- Model defaults updated to GPT-5.4 and Gemini 3.1 Pro Preview
 
 Tell the user about these changes if they were on an older version. See `CHANGELOG.md` for full details.
 
@@ -113,8 +115,8 @@ cp "TARGET_PROJECT_PATH/.env.local.example" "TARGET_PROJECT_PATH/.env.local"
 ```
 
 Tell the user to open `.env.local` and paste their API keys:
-- **OPENAI_API_KEY** — from https://platform.openai.com/api-keys
-- **GEMINI_API_KEY** — from https://aistudio.google.com/apikey
+- **OPENAI_API_KEY** - from https://platform.openai.com/api-keys
+- **GEMINI_API_KEY** - from https://aistudio.google.com/apikey
 
 Do NOT fill in API keys yourself. The user must do this manually.
 
@@ -122,11 +124,11 @@ Do NOT fill in API keys yourself. The user must do this manually.
 
 If `CLAUDE.md` was newly created (not skipped), tell the user they should edit it to describe their project. The sections to update:
 
-- **"About This Project"** — describe their project, tech stack, what it does
-- **"Who I Am"** — describe themselves or their team
-- **"My Preferences"** — add project-specific rules or coding conventions
+- **"About This Project"** - describe their project, tech stack, what it does
+- **"Who I Am"** - describe themselves or their team
+- **"My Preferences"** - add project-specific rules or coding conventions
 
-Toolkit workflow rules are in `.claude/rules/toolkit.md` (auto-loaded, managed by the toolkit — no need to edit).
+Toolkit workflow rules are in `.claude/rules/toolkit.md` (auto-loaded, managed by the toolkit - no need to edit).
 
 ---
 
@@ -142,11 +144,11 @@ The user can now open their project in Cursor or Claude Code and type `/` to see
 
 ## Troubleshooting
 
-- **"setup.sh: command not found"** — Make sure to run the full `bash -c '...'` command from Step 1, not just `setup.sh` on its own
-- **"target directory does not exist"** — Create the project folder first: `mkdir -p /path/to/project`
-- **Commands don't show up in Cursor** — Make sure `.claude/commands/` exists in the project root with `.md` files inside
-- **`/ask-gpt` or `/ask-gemini` fails** — Check that `npm install` was run and `.env.local` has valid API keys
-- **"Permission denied"** — Ensure you have write access to the target project directory
-- **Commands exist but don't appear in the editor** — Make sure the editor workspace root is the project folder that contains `.claude/`, not a parent directory
-- **Script errors with `/bin/bash^M` or "bad interpreter"** — Line-ending issue. Delete the folder and clone fresh, or run `git add --renormalize . && git checkout -- .`
-- **Setup command fails partway through** — Safe to rerun. Leftover `/tmp/tmp.*` folders are harmless
+- **"setup.sh: command not found"** - Make sure to run the full `bash -c '...'` command from Step 1, not just `setup.sh` on its own
+- **"target directory does not exist"** - Create the project folder first: `mkdir -p /path/to/project`
+- **Commands don't show up in Cursor** - Make sure `.claude/commands/` exists in the project root with `.md` files inside
+- **`/ask-gpt` or `/ask-gemini` fails** - Check that `npm install` was run and `.env.local` has valid API keys
+- **"Permission denied"** - Ensure you have write access to the target project directory
+- **Commands exist but don't appear in the editor** - Make sure the editor workspace root is the project folder that contains `.claude/`, not a parent directory
+- **Script errors with `/bin/bash^M` or "bad interpreter"** - Line-ending issue. Delete the folder and clone fresh, or run `git add --renormalize . && git checkout -- .`
+- **Setup command fails partway through** - Safe to rerun. Leftover `/tmp/tmp.*` folders are harmless
