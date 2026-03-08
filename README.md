@@ -291,6 +291,7 @@ The generated `UI-SPEC-*.md` is yours to keep and edit. Only the reference files
 - **"target directory does not exist"** - Create the project folder first: `mkdir -p /path/to/project`
 - **Script errors with `/bin/bash^M` or "bad interpreter"** - This is a line-ending issue. Your shell scripts have Windows-style line endings (CRLF) instead of Unix-style (LF). Easiest fix: delete the folder and clone fresh. Advanced fix: run `git add --renormalize . && git checkout -- .` in the repo.
 - **Setup one-liner fails partway through** - Safe to rerun the command. Leftover `/tmp/tmp.*` folders are harmless and can be deleted.
+- **Commands seem outdated or missing sections** - Delete any toolkit command files from `~/.claude/commands/`. Global copies override project commands and cause stale behavior. The setup script warns about this automatically.
 
 ---
 
