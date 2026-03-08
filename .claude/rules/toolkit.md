@@ -12,6 +12,7 @@
 4. **Show your work** - Tell me what you're doing and why
 5. **Use the Skill tool for /create-plan and /review** - Never manually replicate these commands. If the user says "create plan" or "review", invoke the command via the Skill tool so the template is followed.
 6. **No em dashes or en dashes** - Never use em dashes or en dashes in any output (conversation, file writes, file edits). Use regular hyphens or rewrite the sentence.
+7. **Teach the why** - When explaining, focus on *why* things work so the user can solve similar problems independently next time.
 
 ### Our Workflow
 
