@@ -4,16 +4,19 @@ Now implement precisely as planned, in full.
 
 ## Implementation Requirements
 
+<rules>
 - Write elegant, minimal, modular code
 - Adhere strictly to existing code patterns, conventions, and best practices
 - Include thorough, clear comments/documentation within the code
 - As you implement each step:
   - Update the markdown tracking document with emoji status and overall progress percentage dynamically
+</rules>
 
 ## Parallel Steps
 
 When the plan has steps tagged `[parallel]`, follow these rules:
 
+<conditions>
 ### Pre-flight Check
 Before spawning parallel agents, list the files each agent will touch. If any files overlap between agents, downgrade those steps to `[sequential]`.
 
@@ -34,9 +37,11 @@ After all parallel steps finish, always run a sequential checkpoint:
 2. Run tests (if any exist)
 3. Resolve inconsistencies between parallel outputs
 4. Update the plan status
+</conditions>
 
 ## UI Spec Awareness
 
+<conditions>
 When the plan has a `## UI Specification` section linking to a `UI-SPEC-*.md` file:
 
 1. **Read the UI-SPEC file** at the start of execution
@@ -56,19 +61,24 @@ When the plan has a `## UI Specification` section linking to a `UI-SPEC-*.md` fi
 **If a step looks visual but has no `[UI]` tag:**
 - Warn the user: "This step appears to involve UI work but isn't tagged `[UI]` in the plan. Should I apply the UI spec here?"
 - Wait for confirmation before proceeding
+</conditions>
 
 ## When to Stop
 
+<rules>
 If you hit a critical blocker - a wrong assumption in the plan, a fundamental incompatibility, or a dependency that doesn't work as expected - **stop executing**. Don't push through a broken plan. Instead:
 1. Explain what went wrong and why
 2. Suggest re-running `/create-plan` with what you've learned
 
 This only applies to critical failures, not every small hiccup.
+</rules>
 
 ## Status Updates
 
+<procedure>
 After completing each step, update the plan file:
 - Change 🟥 to 🟨 when starting a task
 - Change 🟨 to 🟩 when completing a task
 - Update the overall progress percentage at the top
 - After all steps are complete, fill in the plan's `## Outcomes` section with what changed, deviations, and key decisions made during execution
+</procedure>

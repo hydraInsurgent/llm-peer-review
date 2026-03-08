@@ -2,23 +2,37 @@
 
 This file is written for AI agents with shell access (like Cursor or Claude Code). If a user asks you to set up this workflow toolkit in their project, follow the steps below exactly.
 
+<rules>
+
 **Do NOT modify this repository.** Do not commit changes, open PRs, or edit files in this repo. This repo is the source toolkit. Your job is to copy the right files into the user's project.
+
+</rules>
 
 ---
 
 ## What This Toolkit Is
 
+<reference>
+
 A set of slash commands and scripts that give AI agents a structured workflow: explore, plan, build, review, get a second opinion, document. The commands live in `.claude/commands/` and work in Cursor and Claude Code.
+
+</reference>
 
 ---
 
 ## Environment
 
+<reference>
+
 Assume shell access on the user machine. Use bash on macOS/Linux/WSL, or PowerShell on native Windows for setup. Note: the debate commands (`/ask-gpt`, `/ask-gemini`) require bash/WSL - they don't work in native PowerShell.
+
+</reference>
 
 ---
 
 ## Setup Steps
+
+<procedure>
 
 ### Prerequisites
 
@@ -130,9 +144,13 @@ If `CLAUDE.md` was newly created (not skipped), tell the user they should edit i
 
 Toolkit workflow rules are in `.claude/rules/toolkit.md` (auto-loaded, managed by the toolkit - no need to edit).
 
+</procedure>
+
 ---
 
 ## After Setup
+
+<reference>
 
 The user can now open their project in Cursor or Claude Code and type `/` to see the available commands. The recommended workflow order is:
 
@@ -140,9 +158,13 @@ The user can now open their project in Cursor or Claude Code and type `/` to see
 /explore  →  /create-plan  →  /ui-spec (optional)  →  /execute  →  /review  →  /ask-gpt or /ask-gemini  →  /document
 ```
 
+</reference>
+
 ---
 
 ## Troubleshooting
+
+<reference>
 
 - **"setup.sh: command not found"** - Make sure to run the full `bash -c '...'` command from Step 1, not just `setup.sh` on its own
 - **"target directory does not exist"** - Create the project folder first: `mkdir -p /path/to/project`
@@ -152,3 +174,5 @@ The user can now open their project in Cursor or Claude Code and type `/` to see
 - **Commands exist but don't appear in the editor** - Make sure the editor workspace root is the project folder that contains `.claude/`, not a parent directory
 - **Script errors with `/bin/bash^M` or "bad interpreter"** - Line-ending issue. Delete the folder and clone fresh, or run `git add --renormalize . && git checkout -- .`
 - **Setup command fails partway through** - Safe to rerun. Leftover `/tmp/tmp.*` folders are harmless
+
+</reference>

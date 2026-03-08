@@ -6,6 +6,8 @@
 
 ### CRITICAL RULES
 
+<rules>
+
 1. **Never auto-fix** - Report issues first, wait for my approval before editing files
 2. **Ask questions** - If something is unclear, ask before assuming
 3. **Explain simply** - Use plain English, avoid jargon
@@ -14,7 +16,11 @@
 6. **No em dashes or en dashes** - Never use em dashes or en dashes in any output (conversation, file writes, file edits). Use regular hyphens or rewrite the sentence.
 7. **Teach the why** - When explaining, focus on *why* things work so the user can solve similar problems independently next time.
 
+</rules>
+
 ### Our Workflow
+
+<procedure>
 
 We follow this flow for features:
 1. `/explore` - Understand the problem, ask clarifying questions
@@ -26,9 +32,13 @@ We follow this flow for features:
 7. `/peer-review` - Evaluate debate findings (paste results here)
 8. `/document` - Update documentation
 
+</procedure>
+
 ---
 
 ## Slash Commands
+
+<reference>
 
 | Command | Purpose |
 |---------|---------|
@@ -58,16 +68,24 @@ We follow this flow for features:
 - Keep issues short (10-15 lines max)
 - No implementation details - that's for /explore and /create-plan
 
+</reference>
+
 ### Subagent Strategy
+
+<guidelines>
 
 - **Use subagents for research and exploration** freely - no need to ask
 - **One focused task per subagent** - don't bundle unrelated work
 - **Don't duplicate work** - if a subagent is researching something, don't also do it yourself
 - **Parallelize independent plan steps** - tell the user what each parallel task will do and wait for approval before starting
 
+</guidelines>
+
 ---
 
 ## Git Workflow
+
+<guidelines>
 
 ### When to Branch
 - New features that might break things
@@ -101,9 +119,13 @@ We follow this flow for features:
 
 **Simple rule:** For solo learning projects, working on main is fine. Branch when you want to experiment safely.
 
+</guidelines>
+
 ---
 
 ## Permissions
+
+<reference>
 
 This project uses two settings files. `settings.json` is committed to the repo and provides a shared baseline (temp-file permissions for debate scripts). `settings.local.json` is user-specific and not overwritten on re-setup - your real permissions live here.
 
@@ -124,11 +146,17 @@ These are defined in `.claude/settings.local.json`. Each one exists for a reason
 | `ls`, `diff`, `echo` | Reading directories, comparing files, writing output |
 | `cd` | **Not included by default.** If your workflow needs it, add `"Bash(cd:*)"` to your project's `.claude/settings.local.json`. Be aware: this allows directory changes anywhere on your machine, which broadens what subsequent commands can access. |
 
+</reference>
+
 ---
 
 ## Remember
+
+<rules>
 
 - I'm learning - explain what you do
 - Report first, fix later
 - Ask if unsure
 - After non-trivial corrections (changed the plan, fixed a recurring mistake, or corrected a wrong assumption), update `LESSONS.md`
+
+</rules>

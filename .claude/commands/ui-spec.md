@@ -4,15 +4,18 @@ Generate a UI specification file linked to an existing plan.
 
 ## Step 0: Read Reference Data (MANDATORY)
 
+<rules>
 Before doing anything else, read all three reference files:
 1. `.claude/ui-reference/colors.md`
 2. `.claude/ui-reference/fonts.md`
 3. `.claude/ui-reference/ux-rules.md`
 
 Do NOT proceed without reading these files. Do NOT use your own knowledge for palettes, fonts, or rules - use only what is in the reference files.
+</rules>
 
 ## Step 1: Identify the Plan
 
+<procedure>
 The plan file path is: $ARGUMENTS
 
 - Read the plan file
@@ -25,6 +28,7 @@ Ask the user these 3 questions and wait for answers before proceeding:
 1. **Product type** - What kind of product is this? (Show the list of product types from `colors.md`)
 2. **Mood/audience** - What feeling should it convey? (Show the available mood tags from the reference data)
 3. **Preferred styling system** - Tailwind CSS or CSS custom properties (variables)?
+</procedure>
 
 ## Step 3: Generate UI-SPEC File
 
@@ -34,6 +38,7 @@ If the user wants to customize colors or fonts from the selected palette (e.g., 
 
 The file MUST use this exact schema:
 
+<template>
 ```
 # UI Specification
 
@@ -122,19 +127,24 @@ Google Fonts import:
 
 **Note:** Use these variables/classes instead of hardcoding hex values. This keeps your design consistent and makes future changes easy - update one variable and it changes everywhere.
 ```
+</template>
 
 ## Step 4: Update the Plan File
 
+<procedure>
 After generating the UI-SPEC file:
 
 1. Add a `## UI Specification` section to the plan file after `## Critical Decisions`, linking to the spec file
 2. Read through the plan's `## Tasks` section and identify steps that involve visual or frontend work
 3. Tag those top-level steps with `[UI]` (append to the step name, before the parallel/sequential tag)
 4. Sub-tasks inherit the `[UI]` tag from their parent - do not tag sub-tasks separately
+</procedure>
 
 ## Important Notes
 
+<rules>
 - This command does NOT modify any code - it only creates the spec file and updates the plan
 - The UI-SPEC is the single source of truth for design decisions during `/execute`
 - Reference files are for browsing and selection only - `/execute` should read the UI-SPEC, not the reference files
 - Each project gets its own UI-SPEC with its own design choices
+</rules>

@@ -4,6 +4,8 @@ Based on our full exchange, produce a markdown plan document.
 
 ## Requirements for the Plan
 
+<rules>
+
 - Include clear, minimal, concise steps
 - Track the status of each step using these emojis:
   - 🟩 Done
@@ -13,7 +15,11 @@ Based on our full exchange, produce a markdown plan document.
 - Do NOT add extra scope or unnecessary complexity beyond explicitly clarified details
 - Steps should be modular, elegant, minimal, and integrate seamlessly within the existing codebase
 
+</rules>
+
 ## Execution Order Tags (for plans with 3+ steps)
+
+<conditions>
 
 **Do not skip this.** For plans with 3 or more steps:
 
@@ -25,7 +31,12 @@ Based on our full exchange, produce a markdown plan document.
 
 For plans with fewer than 3 steps, skip the tags.
 
+</conditions>
+
 ## Markdown Template
+
+<template>
+
 ```
 # Feature Implementation Plan
 
@@ -62,6 +73,12 @@ Key architectural/implementation choices made during exploration:
 <!-- Fill in after execution: decision-relevant deltas only. What changed vs. planned? Key decisions made? Assumptions invalidated? -->
 ```
 
+</template>
+
+<rules>
+
 Again, it's still not time to build yet. Just write the clear plan document. No extra complexity or extra scope beyond what we discussed.
 
 If your plan includes UI work, consider running `/ui-spec` before `/execute` to set design guardrails (colors, fonts, accessibility rules).
+
+</rules>

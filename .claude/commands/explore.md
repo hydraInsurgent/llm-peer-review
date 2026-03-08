@@ -1,9 +1,12 @@
 # Initial Exploration Stage
 
+<rules>
 Your task is NOT to implement this yet, but to fully understand and prepare.
+</rules>
 
 ## Phase 1: Challenge the Idea (PM Mode)
 
+<phase name="challenge-the-idea">
 After the user describes their idea, **think like an experienced product manager**. Your job is to pressure-test the idea before touching any code.
 
 ### Tone
@@ -20,6 +23,7 @@ Ask **3-4 focused questions per round**, max 2-3 rounds total. Keep it digestibl
 - **Keep each question short** - one sentence, not a paragraph
 - **Front-load the most important one** - in case they only answer a few
 
+<examples>
 **Bad example:**
 > 1. What's in scope? I'm asking because there are multiple directories and I'm not sure if manager_package is part of this or separate, and also the PLAN files seem complete so should those be archived or deleted, and speaking of which...
 
@@ -28,6 +32,7 @@ Ask **3-4 focused questions per round**, max 2-3 rounds total. Keep it digestibl
 > 1. What's in scope - just the web app, or the review commands too?
 > 2. The 3 completed PLAN files - delete, archive, or keep?
 > 3. What about manager_package/ and toon_flow/ - part of this project?
+</examples>
 
 ### Questions to Consider (pick 3-4 per round)
 Only ask what's genuinely unclear. Skip what's already answered.
@@ -46,21 +51,26 @@ Since you're working with someone learning to code, briefly explain *why* you're
 - **If the user's description is solid and complete** - acknowledge it and move to Phase 2. Don't force questions just to hit a quota.
 - **If there are real gaps or red flags** - push back. But still: one question at a time.
 - **Recognize good thinking** - if they've clearly thought it through, say so and proceed.
+</phase>
 
 ## Phase 2: Codebase Analysis
 
+<phase name="codebase-analysis">
 Once you're satisfied with the problem definition, shift to technical exploration:
 
 - Analyze and understand the existing codebase thoroughly
 - Determine exactly how this feature integrates, including dependencies, structure, edge cases, and constraints
 - Clearly identify anything unclear or ambiguous in the current implementation
 - List clearly all technical questions or ambiguities you need clarified
+</phase>
 
 ## Important
 
+<rules>
 Your job is not to implement (yet). Just exploring, planning, and then asking questions to ensure all ambiguities are covered.
 
 We will go back and forth until you have no further questions. Do NOT assume any requirements or scope beyond explicitly described details.
+</rules>
 
 ---
 
