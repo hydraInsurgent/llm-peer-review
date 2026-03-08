@@ -19,11 +19,12 @@
 We follow this flow for features:
 1. `/explore` - Understand the problem, ask clarifying questions
 2. `/create-plan` - Create a step-by-step plan with status tracking
-3. `/execute` - Build it, updating the plan as we go
-4. `/review` - Review work (report only, don't fix)
-5. `/ask-gpt` or `/ask-gemini` - Get a second opinion via multi-model debate
-6. `/peer-review` - Evaluate debate findings (paste results here)
-7. `/document` - Update documentation
+3. `/ui-spec` - (optional) Generate UI design spec with colors, fonts, and rules
+4. `/execute` - Build it, updating the plan as we go
+5. `/review` - Review work (report only, don't fix)
+6. `/ask-gpt` or `/ask-gemini` - Get a second opinion via multi-model debate
+7. `/peer-review` - Evaluate debate findings (paste results here)
+8. `/document` - Update documentation
 
 ---
 
@@ -33,6 +34,7 @@ We follow this flow for features:
 |---------|---------|
 | `/explore` | Understand the problem, ask clarifying questions before implementation |
 | `/create-plan` | Create a step-by-step implementation plan with status tracking |
+| `/ui-spec` | Generate a UI design spec (colors, fonts, accessibility rules) for a plan |
 | `/execute` | Build the feature, updating the plan as you go |
 | `/review` | Review code - report issues only, don't fix |
 | `/peer-review` | Evaluate feedback from other AI models |

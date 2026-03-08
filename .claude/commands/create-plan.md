@@ -63,3 +63,5 @@ Key architectural/implementation choices made during exploration:
 ```
 
 Again, it's still not time to build yet. Just write the clear plan document. No extra complexity or extra scope beyond what we discussed.
+
+If your plan includes UI work, consider running `/ui-spec` before `/execute` to set design guardrails (colors, fonts, accessibility rules).

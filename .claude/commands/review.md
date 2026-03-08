@@ -56,6 +56,21 @@ Every finding gets a unique ID: **R1**, **R2**, **R3**, etc. This lets the user 
   - **Why:** [Why this matters]
   - **Fix direction:** [Approach]
 
+### 🎨 Design Review (only when UI-SPEC exists)
+
+If the project has a `UI-SPEC-*.md` file linked from the plan, include a design review section. If no UI-SPEC exists, skip this section entirely.
+
+Read the UI-SPEC file, then check:
+
+- **Palette compliance** - Do the colors in the code match the spec's palette? Flag any hardcoded hex values that should use variables.
+- **Typography compliance** - Are the correct fonts loaded and applied? Check heading vs body font usage.
+- **Contrast** - Do key text/background pairs meet WCAG AA (4.5:1 minimum)?
+- **Focus states** - Do interactive elements (buttons, links, inputs) have visible focus indicators?
+- **Touch targets** - Are clickable elements at least 44x44px on mobile?
+- **Responsive** - Does the layout work at 375px, 768px, and 1024px breakpoints?
+
+Use the same severity scale (Block/Warn/Suggest) and Finding IDs (D1, D2, D3...) for design findings. Keep design findings separate from code findings so the user can address them independently.
+
 ### 🏗️ Staff Engineer Check
 
 After the standard review, step back and evaluate as a staff engineer:
