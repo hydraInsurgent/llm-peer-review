@@ -14,6 +14,7 @@
 
 - **Don't micro-tag individual bullets.** Tag sections, not lines. Wrapping every bullet in XML adds noise without helping parsing.
 - **Watch for tool output artifacts in reviews.** The Read tool's output wrapper (`</output>`) can look like actual file content. Always verify with raw bytes before "fixing" something that might not be broken.
+- **Skill tool expansions can serve stale command versions.** When Claude Code's Skill tool expands a slash command (e.g. `/review`), it may inject an older cached copy of the prompt instead of reading the actual `.claude/commands/*.md` file. In one session, 4 of 5 commands were out of date - missing the Staff Engineer Check, Finding IDs, parallel execution rules, and UI spec awareness added in the XML structuring commit. The AI followed the stale injected prompt without checking the source file. Tracked in issue #52.
 
 ## Patterns That Work
 <!-- Add approaches and conventions that proved effective -->

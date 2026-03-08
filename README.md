@@ -138,7 +138,7 @@ powershell -ExecutionPolicy Bypass -File C:\path\to\llm-peer-review\scripts\setu
 
 > **Note:** If you run the script from inside the toolkit repository without specifying a target, it will show an error to prevent accidentally copying files into the wrong place.
 
-The scripts copy commands, runtime scripts (ask-gpt.js, ask-gemini.js), and toolkit rules to your project. Setup scripts stay in the toolkit repo and are not copied. CLAUDE.md, LESSONS.md, and settings.local.json are skipped if they already exist - those are yours to customize. Toolkit rules (`.claude/rules/toolkit.md`) are always updated.
+The scripts copy commands, runtime scripts (ask-gpt.js, ask-gemini.js), and toolkit rules to your project. Setup scripts stay in the toolkit repo and are not copied. CLAUDE.md, LESSONS.md, and settings.local.json are skipped if they already exist - those are yours to customize. Toolkit rules (`.claude/rules/toolkit.md`) are always updated. See [How It Works](#how-it-works-file-architecture) for details on which files are yours vs. managed by the toolkit.
 
 ### Option C: Do It Manually
 
@@ -224,9 +224,49 @@ Want a different perspective? Run `/ask-gemini` next.
 
 ---
 
+## How It Works: File Architecture
+
+When you set up the toolkit in a project, it creates several files. Here's how they fit together:
+
+| File | Who owns it | What it does |
+|---|---|---|
+| `CLAUDE.md` | **You** | Your project-specific instructions (tech stack, preferences, team info). Never overwritten by setup. |
+| `.claude/rules/toolkit.md` | **Toolkit** | Workflow rules, slash command docs, permissions. Always updated when you re-run setup. |
+| `.claude/commands/*.md` | **Toolkit** (editable) | One file per slash command. You can customize these. |
+| `.claude/ui-reference/` | **Toolkit** | Read-only design libraries for `/ui-spec`. See [UI Spec & Design](#ui-spec--design) below. |
+| `LESSONS.md` | **You** | Track what you learn across sessions. Never overwritten. |
+
+Setup also copies a few supporting files (`.gitignore`, `.gitattributes`, `settings.local.json`, `.env.local.example`). See [Option C](#option-c-do-it-manually) for the full list.
+
+**Why is CLAUDE.md empty?** On purpose. It's a blank slate for your project-specific info. The toolkit rules live in `.claude/rules/toolkit.md` instead, so toolkit updates can reach you without overwriting your project notes.
+
+**How does Claude find toolkit.md?** Claude Code automatically reads every file in `.claude/rules/` when it opens your project. No config needed - just having the file there is enough.
+
+---
+
+## UI Spec & Design
+
+The `/ui-spec` command generates a design spec for your plan. Here's how the pieces connect:
+
+**Reference files** (`.claude/ui-reference/`):
+- `colors.md` - 15 production-quality color palettes (SaaS, e-commerce, healthcare, fintech, etc.)
+- `fonts.md` - 10 font pairings with Google Fonts import URLs
+- `ux-rules.md` - 20 UX guidelines (accessibility fundamentals + interaction patterns)
+
+These are **read-only libraries** that the AI picks from when generating your spec. Don't edit them - they get overwritten on setup. They're a menu, not a config file.
+
+**The flow:**
+1. `/ui-spec` reads the reference files and asks you 3 questions (product type, mood, styling system)
+2. It generates a `UI-SPEC-[plan-name].md` with your chosen colors, fonts, and rules
+3. `/execute` reads the UI-SPEC (not the reference files) and applies those choices when building
+
+The generated `UI-SPEC-*.md` is yours to keep and edit. Only the reference files in `.claude/ui-reference/` are managed by the toolkit.
+
+---
+
 ## Customization
 
-- **CLAUDE.md** - Your project-specific instructions. Describe your project, tech stack, and preferences here.
+- **CLAUDE.md** - Your project-specific instructions. Describe your project, tech stack, and preferences here. See [How It Works](#how-it-works-file-architecture) for details.
 - **`.claude/rules/toolkit.md`** - Toolkit workflow rules (auto-updated on setup). Don't edit this - your changes will be overwritten.
 - **Commands** - Each file in `.claude/commands/` is independent. Want `/review` to check different things? Edit `review.md`.
 - **LESSONS.md** - Track what you learn across sessions. Yours to customize.
