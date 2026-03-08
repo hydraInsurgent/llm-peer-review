@@ -22,7 +22,7 @@
  * 
  * Environment:
  *   GEMINI_API_KEY            Required for Gemini API calls
- *   GEMINI_MODEL              Optional model override (default: gemini-3-flash-preview)
+ *   GEMINI_MODEL              Optional model override (default: gemini-3.1-pro-preview)
  *   GEMINI_USE_CONCAT_PROMPT  Set to "1" to use concatenated prompts instead of systemInstruction
  * 
  * Scope & Assumptions:
@@ -67,7 +67,7 @@ if (fs.existsSync(envPath)) {
 
 // Configuration
 const CONFIG = {
-  model: process.env.GEMINI_MODEL || 'gemini-3-flash-preview',
+  model: process.env.GEMINI_MODEL || 'gemini-3.1-pro-preview',
   maxTokens: 4096,
   useConcatPrompt: process.env.GEMINI_USE_CONCAT_PROMPT === '1',
   retryDelayMs: 1000,
@@ -240,7 +240,7 @@ Options:
 
 Environment:
   GEMINI_API_KEY            Required for Gemini API calls
-  GEMINI_MODEL              Model to use (default: gemini-3-flash-preview)
+  GEMINI_MODEL              Model to use (default: gemini-3.1-pro-preview)
   GEMINI_USE_CONCAT_PROMPT  Set to "1" to use fallback concatenated prompts
 
 Examples:

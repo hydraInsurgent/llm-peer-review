@@ -22,7 +22,7 @@
  * 
  * Environment:
  *   OPENAI_API_KEY   Required for ChatGPT API calls
- *   GPT_MODEL        Optional model override (default: gpt-5.2)
+ *   GPT_MODEL        Optional model override (default: gpt-5.4)
  * 
  * Scope & Assumptions:
  *   - Designed for Linux/WSL environments
@@ -65,7 +65,7 @@ if (fs.existsSync(envPath)) {
 
 // Configuration
 const CONFIG = {
-  model: process.env.GPT_MODEL || 'gpt-5.2',
+  model: process.env.GPT_MODEL || 'gpt-5.4',
   maxTokens: 4096,
   retryDelayMs: 1000,
 };
@@ -237,7 +237,7 @@ Options:
 
 Environment:
   OPENAI_API_KEY   Required for ChatGPT API calls
-  GPT_MODEL        Model to use (default: gpt-5.2)
+  GPT_MODEL        Model to use (default: gpt-5.4)
 
 Examples:
   # Initial review
