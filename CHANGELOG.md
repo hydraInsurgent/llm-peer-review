@@ -8,6 +8,7 @@
 - **`/review` design checks** - When a UI-SPEC exists, `/review` adds a Design Review section checking palette compliance, typography, contrast, focus states, touch targets, and responsive behavior.
 - **`/create-plan` nudge** - After creating a plan, reminds you to run `/ui-spec` if the plan has UI work.
 - **Setup scripts updated** - Both `setup.sh` and `setup.ps1` now copy `.claude/ui-reference/` to target projects.
+- **Model updates** - `/ask-gpt` now defaults to GPT-5.4 (was 5.2). `/ask-gemini` now defaults to Gemini 3.1 Pro Preview (was 3 Flash Preview).
 
 ---
 
