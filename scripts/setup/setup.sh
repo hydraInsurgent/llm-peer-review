@@ -186,6 +186,9 @@ if [ -f "$TARGET/.claude/rules/toolkit.md" ]; then
   echo "    ↻ overwriting toolkit.md (this is managed by the toolkit)"
 fi
 cp "$TOOLKIT_ROOT/.claude/rules/toolkit.md" "$TARGET/.claude/rules/toolkit.md"
+# Stamp the installed version into toolkit.md so users can check it later
+sed -i.bak "s/<!-- This file is managed by the LLM Peer Review toolkit\./<!-- Toolkit version: $VERSION | Managed by LLM Peer Review./" "$TARGET/.claude/rules/toolkit.md"
+rm -f "$TARGET/.claude/rules/toolkit.md.bak"
 OVERWROTE+=(.claude/rules/toolkit.md)
 
 # ─── UI reference data (upstream-owned - always copy) ────────

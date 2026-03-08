@@ -178,6 +178,16 @@ Re-run the same setup command. It's safe to rerun - commands, scripts, and toolk
 
 **Coming from before the CLAUDE.md split?** If your `CLAUDE.md` has toolkit rules mixed in (workflow, permissions, slash commands table), those now live in `.claude/rules/toolkit.md`. After re-running setup, edit your `CLAUDE.md` to keep only project-specific info. See [CHANGELOG.md](CHANGELOG.md) for details.
 
+### Checking Your Version
+
+Open `.claude/rules/toolkit.md` in your project. The first comment at the top shows your installed version:
+
+```
+<!-- Toolkit version: X.Y.Z | Managed by LLM Peer Review. ...
+```
+
+To update, re-run setup. The version stamp updates automatically. See [CHANGELOG.md](CHANGELOG.md) for what changed between versions.
+
 ---
 
 ## How `/ask-gpt` and `/ask-gemini` Work

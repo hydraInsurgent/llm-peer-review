@@ -196,6 +196,10 @@ try {
   Write-Host "  Error: Failed to copy toolkit.md: $_"
   exit 1
 }
+# Stamp the installed version into toolkit.md so users can check it later
+$content = Get-Content -LiteralPath $toolkitRuleDest -Raw
+$content = $content -replace '<!-- This file is managed by the LLM Peer Review toolkit\.', "<!-- Toolkit version: $Version | Managed by LLM Peer Review."
+Set-Content -LiteralPath $toolkitRuleDest -Value $content -NoNewline
 
 # ─── UI reference data (upstream-owned - always copy) ─
 Write-Host "  Copying .claude\ui-reference\ ..."
