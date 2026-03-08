@@ -1,4 +1,4 @@
-# AI Agent Setup Instructions (v1.2)
+# AI Agent Setup Instructions (v1.4)
 
 This file is written for AI agents with shell access (like Cursor or Claude Code). If a user asks you to set up this workflow toolkit in their project, follow the steps below exactly.
 
@@ -51,7 +51,8 @@ If the command fails partway through, it is safe to rerun. Leftover `/tmp/tmp.*`
 
 This copies:
 - `.claude/commands/` (all slash command definitions)
-- `.claude/rules/toolkit.md` (toolkit workflow rules — always updated)
+- `.claude/ui-reference/` (curated color palettes, font pairings, and UX rules for `/ui-spec`)
+- `.claude/rules/toolkit.md` (toolkit workflow rules - always updated)
 - `.claude/settings.local.json` (permission config — skipped if it already exists)
 - `scripts/` (only ask-gpt.js and ask-gemini.js — runtime scripts needed for peer review)
 - `CLAUDE.md` (project instructions template — skipped if it already exists)
@@ -67,8 +68,9 @@ Note: Setup scripts (setup.sh, setup.ps1, install-alias.*) stay in the toolkit r
 If the toolkit is already set up in the user's project, **run the same Step 1 command again**. It's safe to rerun.
 
 **What gets updated** (always overwritten):
-- `.claude/commands/` — all slash command definitions
-- `.claude/rules/toolkit.md` — toolkit workflow rules
+- `.claude/commands/` - all slash command definitions
+- `.claude/ui-reference/` - curated design reference data
+- `.claude/rules/toolkit.md` - toolkit workflow rules
 - `scripts/ask-gpt.js` and `scripts/ask-gemini.js` — runtime scripts
 - `.env.local.example`, `.gitignore`, `.gitattributes`
 
@@ -133,7 +135,7 @@ Toolkit workflow rules are in `.claude/rules/toolkit.md` (auto-loaded, managed b
 The user can now open their project in Cursor or Claude Code and type `/` to see the available commands. The recommended workflow order is:
 
 ```
-/explore  →  /create-plan  →  /execute  →  /review  →  /ask-gpt or /ask-gemini  →  /document
+/explore  →  /create-plan  →  /ui-spec (optional)  →  /execute  →  /review  →  /ask-gpt or /ask-gemini  →  /document
 ```
 
 ---

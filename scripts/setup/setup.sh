@@ -127,6 +127,7 @@ fi
 # ─── Create target directories ───────────────────────────────
 mkdir -p "$TARGET/.claude/commands"
 mkdir -p "$TARGET/.claude/rules"
+mkdir -p "$TARGET/.claude/ui-reference"
 mkdir -p "$TARGET/scripts"
 
 # ─── Track what happens ──────────────────────────────────────
@@ -184,6 +185,17 @@ if [ -f "$TARGET/.claude/rules/toolkit.md" ]; then
 fi
 cp "$TOOLKIT_ROOT/.claude/rules/toolkit.md" "$TARGET/.claude/rules/toolkit.md"
 OVERWROTE+=(.claude/rules/toolkit.md)
+
+# ─── UI reference data (upstream-owned — always copy) ────────
+echo "  Copying .claude/ui-reference/ ..."
+for src in "$TOOLKIT_ROOT/.claude/ui-reference/"*.md; do
+  fname="$(basename "$src")"
+  if [ -f "$TARGET/.claude/ui-reference/$fname" ]; then
+    echo "    ↻ overwriting $fname (this is managed by the toolkit)"
+  fi
+  cp "$src" "$TARGET/.claude/ui-reference/$fname"
+  OVERWROTE+=("ui-reference/$fname")
+done
 
 # ─── Project-owned files (skip if already exist) ─────────────
 for f in CLAUDE.md LESSONS.md .claude/settings.local.json; do

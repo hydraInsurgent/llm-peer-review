@@ -134,6 +134,7 @@ if (-not $PreflightOk) {
 
 New-Item -ItemType Directory -Force -Path (Join-Path $Target ".claude\commands") | Out-Null
 New-Item -ItemType Directory -Force -Path (Join-Path $Target ".claude\rules") | Out-Null
+New-Item -ItemType Directory -Force -Path (Join-Path $Target ".claude\ui-reference") | Out-Null
 New-Item -ItemType Directory -Force -Path (Join-Path $Target "scripts") | Out-Null
 
 $Skipped = @()
@@ -194,6 +195,22 @@ try {
 } catch {
   Write-Host "  Error: Failed to copy toolkit.md: $_"
   exit 1
+}
+
+# ─── UI reference data (upstream-owned — always copy) ─
+Write-Host "  Copying .claude\ui-reference\ ..."
+$uiRefDir = Join-Path $ToolkitRoot ".claude\ui-reference"
+foreach ($src in Get-ChildItem -Path $uiRefDir -Filter *.md -File) {
+  $dest = Join-Path $Target (Join-Path ".claude\ui-reference" $src.Name)
+  if (Test-Path -LiteralPath $dest -PathType Leaf) {
+    Write-Host "    [overwriting] $($src.Name) (this is managed by the toolkit)"
+  }
+  try {
+    Copy-Item -LiteralPath $src.FullName -Destination $dest -Force
+  } catch {
+    Write-Host "  Error: Failed to copy $($src.Name): $_"
+    exit 1
+  }
 }
 
 foreach ($f in @("CLAUDE.md", "LESSONS.md", ".claude\settings.local.json")) {

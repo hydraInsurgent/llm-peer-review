@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.4
+
+- **`/ui-spec` command** - Generate a UI design spec (colors, fonts, accessibility rules) linked to a plan. Picks from curated reference data, outputs a `UI-SPEC-*.md` file, and tags plan steps with `[UI]`.
+- **UI reference data** - 15 color palettes with semantic roles, 10 font pairings with Google Fonts imports, and 20 UX guidelines (including 5 accessibility fundamentals). Lives in `.claude/ui-reference/`.
+- **`/execute` UI awareness** - When a plan has `[UI]` steps and a linked UI-SPEC, `/execute` applies design system injection (states palette/fonts before writing UI code) and runs a micro-checklist (contrast, spacing, focus states).
+- **`/review` design checks** - When a UI-SPEC exists, `/review` adds a Design Review section checking palette compliance, typography, contrast, focus states, touch targets, and responsive behavior.
+- **`/create-plan` nudge** - After creating a plan, reminds you to run `/ui-spec` if the plan has UI work.
+- **Setup scripts updated** - Both `setup.sh` and `setup.ps1` now copy `.claude/ui-reference/` to target projects.
+
+---
+
 ## 1.2
 
 - **`/review` simplified** — Replaced overengineered 4-step pipeline (type detection, lens lookup, aggregation) with two-mode approach: small changes get a single pass, bigger changes get 3 focused sub-agents (Security, Code Quality, Logic). Removed "What Claude Missed" self-check.

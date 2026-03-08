@@ -13,7 +13,10 @@ Works for product specs, research plans, competitive analysis, and code equally.
 ```mermaid
 flowchart TD
     A(["/explore"]) --> B(["/create-plan"])
-    B --> C(["/execute"])
+    B --> B2{{"UI work?"}}
+    B2 -->|yes| B3(["/ui-spec"])
+    B2 -->|no| C
+    B3 --> C(["/execute"])
     C --> D(["/review"])
     D --> E(["/ask-gpt or /ask-gemini"])
     E --> F(["Agreed · Disagreed · Actions"])
@@ -29,6 +32,7 @@ flowchart TD
 |---|---|
 | `/explore` | Think through the problem before you start building |
 | `/create-plan` | Write a step-by-step plan with status tracking |
+| `/ui-spec` | Generate a UI design spec (colors, fonts, accessibility rules) for a plan |
 | `/execute` | Build it, updating the plan as you go |
 | `/review` | Two-mode code review (single pass or 3 focused sub-agents) — reports issues only, won't fix until you say so |
 | `/peer-review` | Evaluate feedback from other AI models |
@@ -47,7 +51,7 @@ flowchart TD
 Use them in this order:
 
 ```
-/explore  →  /create-plan  →  /execute  →  /review  →  /ask-gpt or /ask-gemini  →  /document
+/explore  →  /create-plan  →  /ui-spec (optional)  →  /execute  →  /review  →  /ask-gpt or /ask-gemini  →  /document
 ```
 
 You don't have to use every command every time. But following the order prevents the most common mistake: coding before you've thought it through.
@@ -143,6 +147,7 @@ Copy these into your project:
 | What to copy | Where it goes |
 |---|---|
 | `.claude/commands/` (whole folder) | `your-project/.claude/commands/` |
+| `.claude/ui-reference/` (whole folder) | `your-project/.claude/ui-reference/` |
 | `.claude/rules/toolkit.md` | `your-project/.claude/rules/toolkit.md` |
 | `.claude/settings.local.json` | `your-project/.claude/settings.local.json` |
 | `scripts/` (only `ask-gpt.js` and `ask-gemini.js`) | `your-project/scripts/` |
