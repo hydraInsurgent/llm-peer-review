@@ -1,10 +1,6 @@
 {
   "permissions": {
-    "allow": [
-      "Bash(/tmp/ask-gpt-debate.md:*)",
-      "Bash(/tmp/ask-gemini-debate.md:*)",
-      "Bash(gh repo edit:*)"
-    ]
+    "allow": []
   },
   "env": {
     "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "65"

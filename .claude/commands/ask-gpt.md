@@ -30,12 +30,7 @@ Based on their answer, gather the relevant context:
 
 Save all gathered context to a temporary file:
 
-```bash
-# Create context file with the content to review
-cat > /tmp/ask-gpt-context.md << 'CONTEXT_EOF'
-[PASTE THE GATHERED CONTEXT HERE]
-CONTEXT_EOF
-```
+Use the **Write** tool to save all gathered context to `/tmp/ask-gpt-context.md`.
 
 ## Step 3: Get Initial Review from ChatGPT
 
@@ -70,14 +65,12 @@ Clarifications needed from the reviewer
 
 Append your response to a debate file:
 
-```bash
-cat >> /tmp/ask-gpt-debate.md << 'DEBATE_EOF'
+If `/tmp/ask-gpt-debate.md` does not exist yet, create it with the **Write** tool. If it does exist, read it first, then use **Write** to rewrite it with your new response appended:
 
+```markdown
 ## Claude (Round N):
 
 [YOUR RESPONSE]
-
-DEBATE_EOF
 ```
 
 ### 4c. Get ChatGPT's Follow-up
@@ -86,7 +79,7 @@ DEBATE_EOF
 node scripts/ask-gpt.js respond --context-file /tmp/ask-gpt-context.md --debate-file /tmp/ask-gpt-debate.md
 ```
 
-Append ChatGPT's response to the debate file and continue to the next round.
+Append ChatGPT's response to the debate file using the same read-then-Write approach from Step 4b, and continue to the next round.
 
 **Repeat this cycle 3 times total.**
 

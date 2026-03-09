@@ -133,18 +133,27 @@ These are defined in `.claude/settings.local.json`. Each one exists for a reason
 
 | Permission | Why it's here |
 |---|---|
-| `git commit` | `/execute` and `/document` need to commit after work |
+| `git init`, `git add`, `git rm`, `git commit` | Initializing repos, staging files, committing work |
 | `git push`, `git pull`, `git fetch` | Syncing with remote repositories |
-| `git add`, `git rm`, `git branch` | Staging files, removing files, managing branches |
-| `git config`, `git remote set-url` | Git setup (e.g. safe.directory, remote URLs) |
-| `gh repo create`, `gh repo view`, `gh repo edit` | Repository scaffolding, viewing, and settings |
-| `gh issue create`, `gh issue view`, `gh issue close` | `/create-issue` command and issue management |
+| `git branch`, `git checkout`, `git stash` | Branch management and stashing work in progress |
+| `git status`, `git log`, `git diff`, `git show` | Inspecting repo state and history |
+| `git config`, `git remote add`, `git remote set-url` | Git setup (e.g. safe.directory, remote URLs) |
+| `git check-ignore` | Verifying .gitignore rules before committing |
+| `gh repo create`, `gh repo view`, `gh repo edit`, `gh repo clone` | Repository scaffolding, viewing, cloning, and settings |
+| `gh auth` | GitHub authentication |
+| `gh issue create`, `gh issue view`, `gh issue close`, `gh issue list`, `gh issue reopen` | `/create-issue` command and issue management |
+| `gh label list`, `gh label create` | Managing GitHub labels |
+| `gh pr create`, `gh pr view`, `gh pr diff` | Pull request workflows |
 | `gh api`, `gh release list` | GitHub API calls and release checks |
 | `npm install`, `npm uninstall` | Managing dependencies |
 | `node scripts/ask-gpt.js` | Running the ask-gpt debate script |
 | `node scripts/ask-gemini.js` | Running the ask-gemini debate script |
-| `ls`, `diff`, `echo` | Reading directories, comparing files, writing output |
-| `cd` | **Not included by default.** If your workflow needs it, add `"Bash(cd:*)"` to your project's `.claude/settings.local.json`. Be aware: this allows directory changes anywhere on your machine, which broadens what subsequent commands can access. |
+| `Read`, `Edit`, `Write`, `Glob`, `Grep` | Claude's built-in file tools (included for documentation) |
+| `WebFetch` (github.com, raw.githubusercontent.com), `WebSearch` | Fetching GitHub content and web search |
+| `ls`, `diff`, `echo`, `mkdir`, `cat` | Reading directories, comparing files, writing output, creating folders |
+| `cd` | **Not included by default.** If your workflow needs it, add `"Bash(cd *)"` to your project's `.claude/settings.local.json`. Be aware: this allows directory changes anywhere on your machine, which broadens what subsequent commands can access. |
+
+**Note:** `settings.local.json` also sets `defaultMode: acceptEdits`, which auto-approves file edits after you give a command. This is a top-level setting, not a permission entry.
 
 </reference>
 
