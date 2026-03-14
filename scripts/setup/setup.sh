@@ -101,7 +101,7 @@ for f in ask-gpt.js ask-gemini.js; do
   fi
 done
 
-# Check setup scripts (must exist in setup folder)
+# Check setup scripts (validates toolkit is complete, even though bash can't run .ps1 files)
 for f in setup.sh setup.ps1 install-alias.sh install-alias.ps1; do
   if [ ! -f "$TOOLKIT_ROOT/scripts/setup/$f" ]; then
     echo "  Error: source file not found: $TOOLKIT_ROOT/scripts/setup/$f"
@@ -109,6 +109,7 @@ for f in setup.sh setup.ps1 install-alias.sh install-alias.ps1; do
   fi
 done
 
+# Check files that will be copied to the target project
 for f in VERSION CLAUDE.md LESSONS.md .env.local.example .claude/settings.local.json .claude/rules/toolkit.md .gitignore .gitattributes; do
   if [ ! -f "$TOOLKIT_ROOT/$f" ]; then
     echo "  Error: source file not found: $TOOLKIT_ROOT/$f"
@@ -222,6 +223,8 @@ if [ -f "$TARGET/.claude/rules/toolkit.md" ]; then
 fi
 cp "$TOOLKIT_ROOT/.claude/rules/toolkit.md" "$TARGET/.claude/rules/toolkit.md"
 # Stamp the installed version into toolkit.md so users can check it later
+# sed -i.bak works on both macOS (BSD sed) and Linux (GNU sed). This syntax was
+# chosen for cross-platform compatibility - do not simplify to sed -i '' (breaks Linux).
 sed -i.bak "s/<!-- This file is managed by the LLM Peer Review toolkit\./<!-- Toolkit version: $VERSION | Managed by LLM Peer Review./" "$TARGET/.claude/rules/toolkit.md"
 rm -f "$TARGET/.claude/rules/toolkit.md.bak"
 OVERWROTE+=(.claude/rules/toolkit.md)

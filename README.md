@@ -21,6 +21,8 @@ flowchart TD
     G --> H(["/document"])
 ```
 
+> If the diagram doesn't render, here's the flow: `/explore` -> `/create-plan` -> `/execute` -> `/review-code` -> `/ask-gpt` or `/ask-gemini` -> `/document`
+
 ---
 
 ## Commands
@@ -32,7 +34,7 @@ flowchart TD
 | `/execute` | Build it, updating the plan as you go |
 | `/review-code` | Code review (single pass or 4 sub-agents) - reports issues only, won't fix until you say so |
 | `/review-commands` | Review slash command prompts for quality, workflow, and consistency |
-| `/review-plan` | Check if implementation matches a PLAN-*.md file |
+| `/review-plan` | Check if implementation matches a plan file in `.claude/plans/` |
 | `/review-ux` | UX review from code/markup - usability, accessibility, user flows |
 | `/review-full` | Pre-release cross-domain check with Ready / Not ready recommendation |
 | `/peer-review` | Evaluate feedback from other AI models |
@@ -84,9 +86,36 @@ If you already have Node.js, git, and Cursor installed, skip ahead to [Add to a 
 
 ## Add to a New Project
 
-This isn't an app you install - it's a set of instructions that live in your project folder. Once they're there, type `/` in your editor and the commands show up. Four ways to set it up:
+This isn't an app you install - it's a set of instructions that live in your project folder. Once they're there, type `/` in your editor and the commands show up.
 
-### Option A: Install a Convenient Command (Easiest - Recommended)
+**First time?** Use the quick setup (one command, nothing to install).
+**Setting up multiple projects?** Install a reusable command first, then use it anywhere.
+
+### Quick Setup (One Command)
+
+Pick the script that matches your shell:
+
+**Bash (WSL, macOS, Linux):**
+```bash
+bash /path/to/llm-peer-review/scripts/setup/setup.sh /path/to/your-project
+```
+
+**PowerShell (for setup only - see [Requirements](#requirements)):**
+```powershell
+powershell -ExecutionPolicy Bypass -File C:\path\to\llm-peer-review\scripts\setup\setup.ps1 -Target "C:\path\to\your-project"
+```
+
+Or run from inside your project directory (no target needed):
+```bash
+cd /path/to/your-project
+bash /path/to/llm-peer-review/scripts/setup/setup.sh
+```
+
+> **Note:** If you run the script from inside the toolkit repository without specifying a target, it will show an error to prevent accidentally copying files into the wrong place.
+
+The scripts copy commands, runtime scripts (ask-gpt.js, ask-gemini.js), and toolkit rules to your project. Setup scripts stay in the toolkit repo and are not copied. CLAUDE.md, LESSONS.md, and settings.local.json are skipped if they already exist - those are yours to customize. Toolkit rules (`.claude/rules/toolkit.md`) are always updated. See [How It Works](#how-it-works-file-architecture) for details on which files are yours vs. managed by the toolkit.
+
+### Reusable Command (For Multiple Projects)
 
 Install a `setup-claude-toolkit` command you can run from anywhere:
 
@@ -108,49 +137,13 @@ powershell -ExecutionPolicy Bypass -File scripts\setup\install-alias.ps1
 
 Then use it from anywhere:
 ```bash
-# Specify target
 setup-claude-toolkit /path/to/your-project
-
-# Or from your project directory
-cd /path/to/your-project
-setup-claude-toolkit .
 ```
 
-### Option B: Run a Setup Script Directly
+<details>
+<summary><strong>Advanced: Manual Setup or AI Agent Setup</strong></summary>
 
-Pick the script that matches your shell. You can run it in two ways:
-
-**Method 1: Specify target (works from anywhere)**
-
-**Bash (WSL, macOS, Linux):**
-```bash
-bash /path/to/llm-peer-review/scripts/setup/setup.sh /path/to/your-project
-```
-
-**PowerShell (for setup only - see [Requirements](#requirements)):**
-```powershell
-powershell -ExecutionPolicy Bypass -File C:\path\to\llm-peer-review\scripts\setup\setup.ps1 -Target "C:\path\to\your-project"
-```
-
-**Method 2: Run from your project directory (no target needed)**
-
-**Bash:**
-```bash
-cd /path/to/your-project
-bash /path/to/llm-peer-review/scripts/setup/setup.sh
-```
-
-**PowerShell:**
-```powershell
-cd C:\path\to\your-project
-powershell -ExecutionPolicy Bypass -File C:\path\to\llm-peer-review\scripts\setup\setup.ps1
-```
-
-> **Note:** If you run the script from inside the toolkit repository without specifying a target, it will show an error to prevent accidentally copying files into the wrong place.
-
-The scripts copy commands, runtime scripts (ask-gpt.js, ask-gemini.js), and toolkit rules to your project. Setup scripts stay in the toolkit repo and are not copied. CLAUDE.md, LESSONS.md, and settings.local.json are skipped if they already exist - those are yours to customize. Toolkit rules (`.claude/rules/toolkit.md`) are always updated. See [How It Works](#how-it-works-file-architecture) for details on which files are yours vs. managed by the toolkit.
-
-### Option C: Do It Manually
+#### Do It Manually
 
 Copy these into your project:
 
@@ -173,11 +166,13 @@ cp .env.local.example .env.local
 # Open .env.local and paste your API keys
 ```
 
-> The `npm install` and `.env.local` steps are only needed if you want `/ask-gpt` or `/ask-gemini`. The other 9 commands work without them.
+> The `npm install` and `.env.local` steps are only needed if you want `/ask-gpt` or `/ask-gemini`. The other 13 commands work without them.
 
-### Option D: Let Your AI Agent Do It
+#### Let Your AI Agent Do It
 
 Tell your AI agent (Claude Code, Cursor, etc.): "Set up the workflow from this repo in my project" and point it to [`AGENT-SETUP.md`](AGENT-SETUP.md). It has step-by-step instructions written for AI agents.
+
+</details>
 
 ---
 
@@ -229,7 +224,7 @@ You: Yes
 
 Want a different perspective? Run `/ask-gemini` next.
 
-> **API costs:** Each 3-round debate typically costs $0.01–$0.10 in API credits depending on context size. You'll need an OpenAI and/or Gemini API key with credits.
+> **API costs:** Each 3-round debate typically costs $0.01-$0.10 in API credits depending on context size. You'll need an OpenAI and/or Gemini API key with credits. See **[API-KEYS.md](API-KEYS.md)** for a step-by-step setup guide.
 
 ### What It Looks Like
 

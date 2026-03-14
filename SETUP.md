@@ -139,9 +139,9 @@ This step installs the toolkit itself. You'll copy it into your actual projects 
 Run this in your terminal (PowerShell or WSL on Windows, Terminal on Mac):
 ```bash
 git clone https://github.com/mayankmankhand/llm-peer-review.git
-cd llm-peer-review
-npm install
 ```
+
+> **Note:** You don't need to run `npm install` here. Dependencies are installed in your target project when you run setup later. Only run `npm install` in this folder if you want to test `/ask-gpt` or `/ask-gemini` inside the toolkit repo itself.
 
 ### Step 8: Set Up API Keys
 

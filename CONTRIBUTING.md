@@ -14,7 +14,7 @@ Fork the repo and adapt it to your project. The README has [setup instructions](
 
 ## Adapting Commands for Other Stacks
 
-The commands in `.claude/commands/` are written with JS/TS projects in mind, but they're just markdown files - you can edit them for any stack. For example, `/review-code` checks for things like "no `any` types" and "proper TypeScript interfaces." If you're working in Python, swap those for your own conventions (type hints, docstrings, etc.).
+The commands in `.claude/commands/` are generic - they work with any language or stack. They're just markdown files, so you can customize them for your project. For example, you could add project-specific checks to `/review-code` like "enforce type hints" for Python or "no `any` types" for TypeScript.
 
 ## License
 

@@ -95,12 +95,25 @@ If they return different values, you are in a worktree. If they match, you are i
 ## Phase 2: Codebase Analysis
 
 <phase name="codebase-analysis">
-Once you're satisfied with the problem definition, shift to technical exploration:
+Once you're satisfied with the problem definition, shift to technical exploration.
 
-- Analyze and understand the existing codebase thoroughly
-- Determine exactly how this feature integrates, including dependencies, structure, edge cases, and constraints
-- Clearly identify anything unclear or ambiguous in the current implementation
-- List clearly all technical questions or ambiguities you need clarified
+### What to look at
+1. **Entry points** - where does this feature connect to existing code?
+2. **Dependencies** - what does it rely on (files, packages, APIs)?
+3. **Related files** - what existing code will need to change?
+4. **Edge cases and constraints** - what could go wrong or limit the approach?
+
+### When to stop exploring
+- All integration points are identified
+- No open questions about how the feature fits in
+- You can explain the approach clearly
+
+### What to present
+Give the user a brief summary of what you found before moving to `/create-plan`:
+- Key files involved
+- How the feature integrates
+- Any technical concerns or trade-offs
+- Remaining questions (if any)
 </phase>
 
 ## Important
@@ -113,4 +126,4 @@ We will go back and forth until you have no further questions. Do NOT assume any
 
 ---
 
-**Ready.** Describe the problem you want to solve.
+**Ready.** Describe the problem you want to solve. You can describe it in a sentence, paste a GitHub issue, or share a rough idea - any format works.

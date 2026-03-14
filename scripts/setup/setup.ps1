@@ -207,15 +207,37 @@ try {
   exit 1
 }
 
-# ─── .gitignore and .gitattributes (upstream-owned - always copy) ─
-foreach ($gitFile in @(".gitignore", ".gitattributes")) {
-  Write-Host "  Copying $gitFile ..."
+# ─── .gitignore (merge - preserve user entries, add toolkit lines) ─
+$gitignoreSrc = Join-Path $ToolkitRoot ".gitignore"
+$gitignoreDest = Join-Path $Target ".gitignore"
+if (Test-Path -LiteralPath $gitignoreDest -PathType Leaf) {
+  Write-Host "  Merging .gitignore (preserving your entries) ..."
+  $existingLines = Get-Content -LiteralPath $gitignoreDest
+  $sourceLines = Get-Content -LiteralPath $gitignoreSrc
+  foreach ($line in $sourceLines) {
+    # Skip blank lines and comments to avoid accumulating duplicates on repeated runs
+    if ([string]::IsNullOrWhiteSpace($line) -or $line.StartsWith("#")) { continue }
+    if ($existingLines -notcontains $line) {
+      Add-Content -LiteralPath $gitignoreDest -Value $line
+    }
+  }
+} else {
+  Write-Host "  Copying .gitignore ..."
   try {
-    Copy-Item -LiteralPath (Join-Path $ToolkitRoot $gitFile) -Destination (Join-Path $Target $gitFile) -Force
+    Copy-Item -LiteralPath $gitignoreSrc -Destination $gitignoreDest -Force
   } catch {
-    Write-Host "  Error: Failed to copy $gitFile : $_"
+    Write-Host "  Error: Failed to copy .gitignore: $_"
     exit 1
   }
+}
+
+# ─── .gitattributes (upstream-owned - always copy) ─
+Write-Host "  Copying .gitattributes ..."
+try {
+  Copy-Item -LiteralPath (Join-Path $ToolkitRoot ".gitattributes") -Destination (Join-Path $Target ".gitattributes") -Force
+} catch {
+  Write-Host "  Error: Failed to copy .gitattributes: $_"
+  exit 1
 }
 
 # ─── Toolkit rules (upstream-owned - always copy) ─

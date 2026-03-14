@@ -15,7 +15,7 @@ Mile wide, inch deep. Cross-domain release readiness, not a deep specialist revi
 
 ## How to Review
 <procedure>
-Read the changed files and any relevant PLAN-*.md file. Auto-detect the most recently modified PLAN-*.md. If no PLAN-*.md file exists, skip plan comparison and note it in the summary. If multiple PLAN-*.md files exist and the most recent one is not clearly complete (all tasks checked off), pause and ask the user which plan to evaluate against.
+Read the changed files and any relevant plan file. Auto-detect the most recently modified `PLAN-*.md` in `.claude/plans/` (also check the project root for legacy plan files). If no plan file exists, skip plan comparison and note it in the summary. If multiple plan files exist and the most recent one is not clearly complete (all tasks checked off), pause and ask the user which plan to evaluate against.
 
 Then pick one of two modes:
 

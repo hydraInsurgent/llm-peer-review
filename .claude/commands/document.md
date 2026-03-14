@@ -58,7 +58,9 @@ Detect if you're in a worktree: compare `git rev-parse --git-dir` with `git rev-
 
 **If in a worktree:**
 
-1. Run `git status`. If there are uncommitted changes, ask the user whether to commit them before proceeding. Do not continue with uncommitted work.
+Walk the user through each step one at a time, confirming before proceeding to the next.
+
+1. Run `git status`. If there are uncommitted changes, ask the user whether to commit them before proceeding. Follow the commit message conventions in toolkit.md (start with a verb, under 50 characters). Do not continue with uncommitted work.
 2. Push the branch to the remote.
 3. If the branch name does not match `worktree-<number>-<label>`, ask the user: "Your branch still has its default name. Want to rename it before creating the PR?" Follow the worktree naming convention in toolkit.md if they say yes.
 4. Draft a PR title and body summarizing the branch's changes. Show it to the user for review, then create the PR:

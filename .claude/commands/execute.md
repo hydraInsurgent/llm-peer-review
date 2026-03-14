@@ -18,7 +18,7 @@ When the plan has steps tagged `[parallel]`, follow these rules:
 
 <conditions>
 ### Pre-flight Check
-Before spawning parallel agents, list the files each agent will touch. If any files overlap between agents, downgrade those steps to `[sequential]`.
+Before spawning parallel agents, list the files each agent will touch. If any files overlap between agents, downgrade the overlapping steps to `[sequential]`. Non-overlapping steps can still run in parallel.
 
 ### User Confirmation
 Before starting parallel work, tell the user what each task will do:

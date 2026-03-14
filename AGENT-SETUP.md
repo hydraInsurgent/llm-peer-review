@@ -102,7 +102,7 @@ If the user wants a completely fresh `CLAUDE.md` template, they can delete their
 - `/review` renamed to `/review-code` (same functionality plus a 4th sub-agent)
 - 4 new review commands: `/review-commands`, `/review-plan`, `/review-ux`, `/review-full`
 - All review commands share severity anchors and "Use this when" guidance
-- `/ui-spec` removed - UI/UX preferences now handled in `/explore` and `/create-plan`
+- UI/UX preferences now handled directly in `/explore` and `/create-plan` (old UI spec command removed)
 
 Tell the user about these changes if they were on an older version. See `CHANGELOG.md` for full details.
 
