@@ -262,6 +262,21 @@ Setup also copies a few supporting files (`.gitignore`, `.gitattributes`, `setti
 
 ---
 
+## Multi-Session Worktree Support
+
+If you run multiple Claude Code sessions at the same time (in Cursor windows or via Remote Control), use Git worktrees so sessions don't conflict with each other.
+
+**Setup:** Start Claude Code with `--spawn=worktree`, or set it permanently in `/config` under spawn mode.
+
+**What the toolkit does automatically:**
+- `/explore` and `/create-plan` detect worktree sessions and rename the branch to `worktree-<issue-number>-<short-label>` when an issue is referenced
+- `/document` creates a PR from the worktree branch and offers to clean up the worktree folder when you're done
+- The branch and PR stay alive even after the worktree folder is deleted - you can always re-create a worktree if fixes are needed
+
+**Key concept:** A worktree is just a folder. Deleting the folder does not delete the branch or PR. Think of it like closing a document window vs. deleting the file.
+
+---
+
 ## Customization
 
 - **CLAUDE.md** - Your project-specific instructions. Describe your project, tech stack, and preferences here. See [How It Works](#how-it-works-file-architecture) for details.

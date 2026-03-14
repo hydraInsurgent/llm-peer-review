@@ -2,6 +2,20 @@
 
 Based on our full exchange, produce a markdown plan document.
 
+## Worktree Check
+
+<procedure>
+
+**Fallback branch rename** - `/explore` is the primary place this happens, but if the user skipped it or didn't have an issue number yet, handle it here before generating the plan.
+
+1. Detect if you're in a worktree: compare `git rev-parse --git-dir` with `git rev-parse --git-common-dir`. If they differ, you're in a worktree.
+2. Check if the current branch name does NOT already match the `worktree-<number>-<label>` pattern.
+3. If both are true AND an issue is referenced in the conversation, rename the branch following the worktree naming convention in toolkit.md.
+4. Tell the user: "Renamed your branch from `old-name` to `worktree-XX-short-label` to match the issue."
+5. If not in a worktree, or the branch is already renamed, skip silently.
+
+</procedure>
+
 ## Requirements for the Plan
 
 <rules>

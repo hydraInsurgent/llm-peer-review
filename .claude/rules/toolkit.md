@@ -122,6 +122,16 @@ We follow this flow for features:
 
 **Simple rule:** For solo learning projects, working on main is fine. Branch when you want to experiment safely.
 
+### Worktree Workflow
+
+When running multiple Claude Code sessions in parallel (via Cursor windows or Remote Control spawn mode), each session should use its own Git worktree. This prevents branch conflicts between sessions.
+
+- **Setup:** Use `--spawn=worktree` when starting Claude Code, or set it in `/config`
+- **Branch naming:** When an issue is identified, rename the worktree branch to `worktree-<issue-number>-<short-label>` (e.g., `worktree-58-branch-conflicts`)
+- **How it works:** `/explore` auto-renames the branch when an issue comes up. `/create-plan` does the same as a fallback if `/explore` was skipped.
+- **Cleanup:** `/document` handles end-of-session cleanup - creates a PR, then offers to delete the worktree folder. The branch stays alive until the PR is merged.
+- **Key concept:** A worktree is just a folder on disk. Deleting it does not delete the branch or PR. You can always re-create a worktree from the same branch if you need to make fixes.
+
 </guidelines>
 
 ---
@@ -139,6 +149,8 @@ These are defined in `.claude/settings.local.json`. Each one exists for a reason
 | `git init`, `git add`, `git rm`, `git commit` | Initializing repos, staging files, committing work |
 | `git push`, `git pull`, `git fetch` | Syncing with remote repositories |
 | `git branch`, `git checkout`, `git stash` | Branch management and stashing work in progress |
+| `git worktree` | Creating, listing, and removing worktrees for parallel sessions |
+| `git rev-parse` | Worktree detection and repo path queries |
 | `git status`, `git log`, `git diff`, `git show` | Inspecting repo state and history |
 | `git config`, `git remote add`, `git remote set-url` | Git setup (e.g. safe.directory, remote URLs) |
 | `git check-ignore` | Verifying .gitignore rules before committing |

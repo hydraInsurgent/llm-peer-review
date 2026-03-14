@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.1
+
+- **Worktree support for multi-session workflows** - Running multiple Claude Code sessions no longer causes branch conflicts. The toolkit now detects worktree sessions and manages them automatically.
+  - `/explore` and `/create-plan` auto-rename the worktree branch to `worktree-<issue-number>-<short-label>` when an issue is referenced
+  - `/document` creates a PR from the worktree branch and offers to delete the worktree folder when you're done
+  - New "Worktree Workflow" section in toolkit rules with setup guidance and conventions
+  - `git worktree` added to the permissions table
+
+---
+
 ## 2.0
 
 - **`/review` renamed to `/review-code`** - The old `/review` command is now `/review-code`. Same functionality, plus a 4th sub-agent (Performance & Maintainability) and severity anchors.

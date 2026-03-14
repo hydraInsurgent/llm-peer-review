@@ -25,3 +25,6 @@ PLAN-*.md
 
 # IDE (local Cursor settings - shared commands are in .claude/commands/)
 .cursor/
+
+# Claude Code worktrees (Remote Control spawn mode)
+.claude/worktrees/

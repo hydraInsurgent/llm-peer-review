@@ -64,6 +64,34 @@ Since you're working with someone learning to code, briefly explain *why* you're
 - **Recognize good thinking** - if they've clearly thought it through, say so and proceed.
 </phase>
 
+## Worktree Setup (between Phase 1 and Phase 2)
+
+<phase name="worktree-setup">
+Before starting codebase analysis, check if this session is running in a Git worktree. A worktree is a separate working folder linked to the same repo - it lets you work on a feature without touching your main code.
+
+### How to detect a worktree
+Compare the output of these two commands:
+- `git rev-parse --git-dir` - the Git directory for this working copy
+- `git rev-parse --git-common-dir` - the shared Git directory for the whole repo
+
+If they return different values, you are in a worktree. If they match, you are in the main working copy.
+
+### What to do
+
+**If in a worktree AND an issue number came up during Phase 1:**
+1. Check if the current branch already matches the `worktree-<number>-<label>` pattern. If so, skip - it's already named correctly.
+2. If you only have an issue number (no title), fetch it: `gh issue view <number> --json title`
+3. If in detached HEAD state, create a branch instead: `git checkout -b worktree-<issue-number>-<short-label>`
+4. Otherwise, rename the current branch: `git branch -m worktree-<issue-number>-<short-label>`
+   - The short label should be 2-3 words from the issue title, lowercase, with only letters, numbers, and hyphens
+5. If the rename fails because the name is taken, tell the user and ask how to proceed (add a suffix, pick a different label, or keep the current name).
+6. Tell the user: "Renamed your branch from `old-name` to `worktree-XX-short-label` to match the issue."
+
+**If in a worktree but no issue number came up:** skip the rename silently. `/create-plan` will handle it if an issue appears later.
+
+**If not in a worktree:** skip silently and move on to Phase 2.
+</phase>
+
 ## Phase 2: Codebase Analysis
 
 <phase name="codebase-analysis">
