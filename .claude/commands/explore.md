@@ -43,6 +43,17 @@ Only ask what's genuinely unclear. Skip what's already answered.
 - **What's the definition of done?** (Minimum viable scope - what's in, what's out?)
 - **What are we trading off?** (What else could we build instead? What's the cost?)
 - **Does this contradict anything?** (Existing decisions, scope, or priorities?)
+- **What should this look like?** (Layout, style, visual direction)
+- **How should this behave?** (Interactions, flows, states)
+
+### UI/UX Preferences (when the feature involves UI)
+
+If the feature involves a user interface (a page, dashboard, form, component, etc.):
+
+1. **Proactively ask** about look and behavior as part of your Phase 1 questions. Don't wait for the user to bring it up.
+2. **Accept any format** - the user might give code, a text description, a design guide, or just a rough idea. All are valid.
+3. **If the user says "you decide"** - don't leave it vague. Propose a specific direction (e.g., "I'm thinking a two-column layout with a sidebar for filters") and get a soft confirmation before moving on.
+4. **Document the outcome** - whether the user gave detailed guidance or approved your proposal, these decisions will feed into `/create-plan`'s UI/UX Design section.
 
 ### Educational Context
 Since you're working with someone learning to code, briefly explain *why* you're asking when it adds value. Example: "I'm asking about success criteria because unclear goals often lead to scope creep."

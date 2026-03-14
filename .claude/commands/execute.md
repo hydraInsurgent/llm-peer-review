@@ -39,30 +39,6 @@ After all parallel steps finish, always run a sequential checkpoint:
 4. Update the plan status
 </conditions>
 
-## UI Spec Awareness
-
-<conditions>
-When the plan has a `## UI Specification` section linking to a `UI-SPEC-*.md` file:
-
-1. **Read the UI-SPEC file** at the start of execution
-2. **The UI-SPEC is the single source of truth** for design decisions - do not read the reference files in `.claude/ui-reference/`
-
-### For `[UI]`-tagged steps:
-
-**Before writing UI code** (Design System Injection):
-- State the active palette ID and key hex codes (primary, bg, text)
-- State the active font pairing ID and font names
-
-**After writing UI code** (micro-checklist - report, don't gate):
-1. Text/background contrast meets WCAG AA (4.5:1 minimum)
-2. Spacing scale declared and applied consistently
-3. Interactive elements have visible focus indicators
-
-**If a step looks visual but has no `[UI]` tag:**
-- Warn the user: "This step appears to involve UI work but isn't tagged `[UI]` in the plan. Should I apply the UI spec here?"
-- Wait for confirmation before proceeding
-</conditions>
-
 ## When to Stop
 
 <rules>

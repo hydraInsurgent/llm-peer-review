@@ -49,6 +49,12 @@ Short summary of what we're building and why.
 **Current State:** Where things are now.
 **Goal State:** Where we want to end up.
 
+## UI/UX Design (optional - only when the feature involves UI)
+<!-- Include this section when the feature has a user interface. Document what was decided during /explore. -->
+- **Source:** User-provided / AI-proposed, user-approved
+- **Look:** [Layout, style, colors, visual direction - whatever was decided]
+- **Behavior:** [Interactions, flows, states - whatever was decided]
+
 ## Critical Decisions
 Key architectural/implementation choices made during exploration:
 - Decision 1: [choice] - [brief rationale]
@@ -78,7 +84,5 @@ Key architectural/implementation choices made during exploration:
 <rules>
 
 Again, it's still not time to build yet. Just write the clear plan document. No extra complexity or extra scope beyond what we discussed.
-
-If your plan includes UI work, consider running `/ui-spec` before `/execute` to set design guardrails (colors, fonts, accessibility rules).
 
 </rules>

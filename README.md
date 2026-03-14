@@ -13,11 +13,8 @@ Works for product specs, research plans, competitive analysis, and code equally.
 ```mermaid
 flowchart TD
     A(["/explore"]) --> B(["/create-plan"])
-    B --> B2{{"UI work?"}}
-    B2 -->|yes| B3(["/ui-spec"])
-    B2 -->|no| C
-    B3 --> C(["/execute"])
-    C --> D(["/review"])
+    B --> C(["/execute"])
+    C --> D(["/review-code"])
     D --> E(["/ask-gpt or /ask-gemini"])
     E --> F(["Agreed · Disagreed · Actions"])
     F --> G{"You approve"}
@@ -32,9 +29,12 @@ flowchart TD
 |---|---|
 | `/explore` | Think through the problem before you start building |
 | `/create-plan` | Write a step-by-step plan with status tracking |
-| `/ui-spec` | Generate a UI design spec (colors, fonts, accessibility rules) for a plan |
 | `/execute` | Build it, updating the plan as you go |
-| `/review` | Two-mode code review (single pass or 3 focused sub-agents) - reports issues only, won't fix until you say so |
+| `/review-code` | Code review (single pass or 4 sub-agents) - reports issues only, won't fix until you say so |
+| `/review-commands` | Review slash command prompts for quality, workflow, and consistency |
+| `/review-plan` | Check if implementation matches a PLAN-*.md file |
+| `/review-ux` | UX review from code/markup - usability, accessibility, user flows |
+| `/review-full` | Pre-release cross-domain check with Ready / Not ready recommendation |
 | `/peer-review` | Evaluate feedback from other AI models |
 | `/document` | Update your README and docs to match what was built |
 | `/create-issue` | Create a GitHub issue (asks you questions first) |
@@ -46,12 +46,22 @@ flowchart TD
 
 > `/ask-gpt` and `/ask-gemini` automate the full debate loop. `/peer-review` is for when you paste feedback from an external tool manually.
 
+#### Which review command do I use?
+
+| I need to... | Use |
+|---|---|
+| Check code for bugs, security, and quality | `/review-code` |
+| Review slash command prompts and workflows | `/review-commands` |
+| Verify implementation matches a plan | `/review-plan` |
+| Evaluate UX, accessibility, and user flows | `/review-ux` |
+| Pre-release go/no-go check across all domains | `/review-full` |
+
 ### The Workflow
 
 Use them in this order:
 
 ```
-/explore  →  /create-plan  →  /ui-spec (optional)  →  /execute  →  /review  →  /ask-gpt or /ask-gemini  →  /document
+/explore  →  /create-plan  →  /execute  →  /review-code  →  /ask-gpt or /ask-gemini  →  /document
 ```
 
 You don't have to use every command every time. But following the order prevents the most common mistake: coding before you've thought it through.
@@ -147,7 +157,6 @@ Copy these into your project:
 | What to copy | Where it goes |
 |---|---|
 | `.claude/commands/` (whole folder) | `your-project/.claude/commands/` |
-| `.claude/ui-reference/` (whole folder) | `your-project/.claude/ui-reference/` |
 | `.claude/rules/toolkit.md` | `your-project/.claude/rules/toolkit.md` |
 | `.claude/settings.local.json` | `your-project/.claude/settings.local.json` |
 | `scripts/` (only `ask-gpt.js` and `ask-gemini.js`) | `your-project/scripts/` |
@@ -243,7 +252,6 @@ When you set up the toolkit in a project, it creates several files. Here's how t
 | `CLAUDE.md` | **You** | Your project-specific instructions (tech stack, preferences, team info). Never overwritten by setup. |
 | `.claude/rules/toolkit.md` | **Toolkit** | Workflow rules, slash command docs, permissions. Always updated when you re-run setup. |
 | `.claude/commands/*.md` | **Toolkit** (editable) | One file per slash command. You can customize these. |
-| `.claude/ui-reference/` | **Toolkit** | Read-only design libraries for `/ui-spec`. See [UI Spec & Design](#ui-spec--design) below. |
 | `LESSONS.md` | **You** | Track what you learn across sessions. Never overwritten. |
 
 Setup also copies a few supporting files (`.gitignore`, `.gitattributes`, `settings.local.json`, `.env.local.example`). See [Option C](#option-c-do-it-manually) for the full list.
@@ -254,31 +262,11 @@ Setup also copies a few supporting files (`.gitignore`, `.gitattributes`, `setti
 
 ---
 
-## UI Spec & Design
-
-The `/ui-spec` command generates a design spec for your plan. Here's how the pieces connect:
-
-**Reference files** (`.claude/ui-reference/`):
-- `colors.md` - 15 production-quality color palettes (SaaS, e-commerce, healthcare, fintech, etc.)
-- `fonts.md` - 10 font pairings with Google Fonts import URLs
-- `ux-rules.md` - 20 UX guidelines (accessibility fundamentals + interaction patterns)
-
-These are **read-only libraries** that the AI picks from when generating your spec. Don't edit them - they get overwritten on setup. They're a menu, not a config file.
-
-**The flow:**
-1. `/ui-spec` reads the reference files and asks you 3 questions (product type, mood, styling system)
-2. It generates a `UI-SPEC-[plan-name].md` with your chosen colors, fonts, and rules
-3. `/execute` reads the UI-SPEC (not the reference files) and applies those choices when building
-
-The generated `UI-SPEC-*.md` is yours to keep and edit. Only the reference files in `.claude/ui-reference/` are managed by the toolkit.
-
----
-
 ## Customization
 
 - **CLAUDE.md** - Your project-specific instructions. Describe your project, tech stack, and preferences here. See [How It Works](#how-it-works-file-architecture) for details.
 - **`.claude/rules/toolkit.md`** - Toolkit workflow rules (auto-updated on setup). Don't edit this - your changes will be overwritten.
-- **Commands** - Each file in `.claude/commands/` is independent. Want `/review` to check different things? Edit `review.md`.
+- **Commands** - Each file in `.claude/commands/` is independent. Want `/review-code` to check different things? Edit `review-code.md`. There are 5 review commands: `review-code`, `review-commands`, `review-plan`, `review-ux`, `review-full`.
 - **LESSONS.md** - Track what you learn across sessions. Yours to customize.
 
 ---

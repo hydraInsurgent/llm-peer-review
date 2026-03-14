@@ -1,4 +1,4 @@
-# AI Agent Setup Instructions (v1.4)
+# AI Agent Setup Instructions (v2)
 
 This file is written for AI agents with shell access (like Cursor or Claude Code). If a user asks you to set up this workflow toolkit in their project, follow the steps below exactly.
 
@@ -65,7 +65,6 @@ If the command fails partway through, it is safe to rerun. Leftover `/tmp/tmp.*`
 
 This copies:
 - `.claude/commands/` (all slash command definitions)
-- `.claude/ui-reference/` (curated color palettes, font pairings, and UX rules for `/ui-spec`)
 - `.claude/rules/toolkit.md` (toolkit workflow rules - always updated)
 - `.claude/settings.local.json` (permission config - skipped if it already exists)
 - `scripts/` (only ask-gpt.js and ask-gemini.js - runtime scripts needed for peer review)
@@ -83,7 +82,6 @@ If the toolkit is already set up in the user's project, **run the same Step 1 co
 
 **What gets updated** (always overwritten):
 - `.claude/commands/` - all slash command definitions
-- `.claude/ui-reference/` - curated design reference data
 - `.claude/rules/toolkit.md` - toolkit workflow rules
 - `scripts/ask-gpt.js` and `scripts/ask-gemini.js` - runtime scripts
 - `.env.local.example`, `.gitignore`, `.gitattributes`
@@ -100,11 +98,11 @@ If the toolkit is already set up in the user's project, **run the same Step 1 co
 
 If the user wants a completely fresh `CLAUDE.md` template, they can delete theirs and rerun setup.
 
-**What's new in v1.4:** After re-running setup:
-- `/ui-spec` command for generating UI design specs (colors, fonts, accessibility rules) linked to a plan
-- UI reference data (15 color palettes, 10 font pairings, 20 UX rules) in `.claude/ui-reference/`
-- `/execute` and `/review` are now UI-aware when a plan has a linked UI-SPEC
-- Model defaults updated to GPT-5.4 and Gemini 3.1 Pro Preview
+**What's new in v2:** After re-running setup:
+- `/review` renamed to `/review-code` (same functionality plus a 4th sub-agent)
+- 4 new review commands: `/review-commands`, `/review-plan`, `/review-ux`, `/review-full`
+- All review commands share severity anchors and "Use this when" guidance
+- `/ui-spec` removed - UI/UX preferences now handled in `/explore` and `/create-plan`
 
 Tell the user about these changes if they were on an older version. See `CHANGELOG.md` for full details.
 
@@ -155,7 +153,7 @@ Toolkit workflow rules are in `.claude/rules/toolkit.md` (auto-loaded, managed b
 The user can now open their project in Cursor or Claude Code and type `/` to see the available commands. The recommended workflow order is:
 
 ```
-/explore  →  /create-plan  →  /ui-spec (optional)  →  /execute  →  /review  →  /ask-gpt or /ask-gemini  →  /document
+/explore  →  /create-plan  →  /execute  →  /review-code  →  /ask-gpt or /ask-gemini  →  /document
 ```
 
 </reference>

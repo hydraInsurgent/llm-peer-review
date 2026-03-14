@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.0
+
+- **`/review` renamed to `/review-code`** - The old `/review` command is now `/review-code`. Same functionality, plus a 4th sub-agent (Performance & Maintainability) and severity anchors.
+- **4 new review commands** - Specialized reviews for different types of work:
+  - `/review-commands` - Review slash command prompts for quality, workflow completeness, and cross-command consistency. Staff PM check.
+  - `/review-plan` - Check if implementation matches a PLAN-*.md file. Auto-detects the most recent plan. Staff PM check.
+  - `/review-ux` - UX review from code/markup - usability, accessibility, user flows, plus competitive research via web search. Staff Designer check.
+  - `/review-full` - Pre-release cross-domain check. Mile wide, inch deep. Ends with Ready / Ready with conditions / Not ready recommendation. Staff Architect check.
+- **Severity anchors** - All review commands share minimum severity floors: security exposure, data loss, accessibility blockers, and unmet requirements are never downgraded below Warn.
+- **"Use this when" guidance** - Every review command now has clear guidance at the top for when to use it and when not to.
+- **Removed `/ui-spec` command** - The `/ui-spec` command, `.claude/ui-reference/` folder, and all references have been removed. UI/UX preferences are now handled directly in `/explore` and `/create-plan`.
+- **UI/UX preferences in `/explore` and `/create-plan`** - `/explore` now proactively asks about look and behavior for UI features. `/create-plan` includes an optional UI/UX Design section in the plan template.
+
+---
+
 ## 1.4.4
 
 - **Full default permissions** - `settings.local.json` now ships with 51 permissions covering all toolkit workflows (git, gh, npm, debate scripts, file tools, web tools, utilities). New projects no longer need to approve actions one by one. (Issue #53)
@@ -20,8 +35,8 @@
 ## 1.4.2
 
 - **Version discoverability** - Setup now stamps the installed version into `.claude/rules/toolkit.md` so users can check what version they're running. README has a new "Checking Your Version" section explaining where to look and how to update.
-- **README: "How It Works" section** - New section explaining the file architecture: which files are yours (CLAUDE.md, LESSONS.md) vs. managed by the toolkit (toolkit.md, commands, ui-reference). Answers "why is CLAUDE.md empty?" and "how does Claude find toolkit.md?"
-- **README: "UI Spec & Design" section** - New section explaining what `.claude/ui-reference/` contains, that reference files are read-only libraries, and the `/ui-spec` -> `UI-SPEC-*.md` -> `/execute` flow.
+- **README: "How It Works" section** - New section explaining the file architecture: which files are yours (CLAUDE.md, LESSONS.md) vs. managed by the toolkit (toolkit.md, commands). Answers "why is CLAUDE.md empty?" and "how does Claude find toolkit.md?"
+- ~~**README: "UI Spec & Design" section** - New section explaining what `.claude/ui-reference/` contains, that reference files are read-only libraries, and the `/ui-spec` -> `UI-SPEC-*.md` -> `/execute` flow.~~ (Removed in v2)
 - **CLAUDE.md guiding comments** - Added HTML comments explaining this file is yours and pointing to toolkit.md and README for context.
 
 ---
@@ -34,12 +49,12 @@
 
 ## 1.4
 
-- **`/ui-spec` command** - Generate a UI design spec (colors, fonts, accessibility rules) linked to a plan. Picks from curated reference data, outputs a `UI-SPEC-*.md` file, and tags plan steps with `[UI]`.
-- **UI reference data** - 15 color palettes with semantic roles, 10 font pairings with Google Fonts imports, and 20 UX guidelines (including 5 accessibility fundamentals). Lives in `.claude/ui-reference/`.
-- **`/execute` UI awareness** - When a plan has `[UI]` steps and a linked UI-SPEC, `/execute` applies design system injection (states palette/fonts before writing UI code) and runs a micro-checklist (contrast, spacing, focus states).
-- **`/review` design checks** - When a UI-SPEC exists, `/review` adds a Design Review section checking palette compliance, typography, contrast, focus states, touch targets, and responsive behavior.
-- **`/create-plan` nudge** - After creating a plan, reminds you to run `/ui-spec` if the plan has UI work.
-- **Setup scripts updated** - Both `setup.sh` and `setup.ps1` now copy `.claude/ui-reference/` to target projects.
+- ~~**`/ui-spec` command** - Generate a UI design spec (colors, fonts, accessibility rules) linked to a plan. Picks from curated reference data, outputs a `UI-SPEC-*.md` file, and tags plan steps with `[UI]`.~~ (Removed in v2)
+- ~~**UI reference data** - 15 color palettes with semantic roles, 10 font pairings with Google Fonts imports, and 20 UX guidelines (including 5 accessibility fundamentals). Lives in `.claude/ui-reference/`.~~ (Removed in v2)
+- ~~**`/execute` UI awareness** - When a plan has `[UI]` steps and a linked UI-SPEC, `/execute` applies design system injection (states palette/fonts before writing UI code) and runs a micro-checklist (contrast, spacing, focus states).~~ (Removed in v2)
+- ~~**`/review` design checks** - When a UI-SPEC exists, `/review` adds a Design Review section checking palette compliance, typography, contrast, focus states, touch targets, and responsive behavior.~~ (Removed in v2)
+- ~~**`/create-plan` nudge** - After creating a plan, reminds you to run `/ui-spec` if the plan has UI work.~~ (Removed in v2)
+- ~~**Setup scripts updated** - Both `setup.sh` and `setup.ps1` now copy `.claude/ui-reference/` to target projects.~~ (Removed in v2)
 - **Model updates** - `/ask-gpt` now defaults to GPT-5.4 (was 5.2). `/ask-gemini` now defaults to Gemini 3.1 Pro Preview (was 3 Flash Preview).
 
 ---

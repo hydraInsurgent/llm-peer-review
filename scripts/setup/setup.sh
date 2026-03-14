@@ -163,7 +163,6 @@ fi
 # ─── Create target directories ───────────────────────────────
 mkdir -p "$TARGET/.claude/commands"
 mkdir -p "$TARGET/.claude/rules"
-mkdir -p "$TARGET/.claude/ui-reference"
 mkdir -p "$TARGET/scripts"
 
 # ─── Track what happens ──────────────────────────────────────
@@ -226,17 +225,6 @@ cp "$TOOLKIT_ROOT/.claude/rules/toolkit.md" "$TARGET/.claude/rules/toolkit.md"
 sed -i.bak "s/<!-- This file is managed by the LLM Peer Review toolkit\./<!-- Toolkit version: $VERSION | Managed by LLM Peer Review./" "$TARGET/.claude/rules/toolkit.md"
 rm -f "$TARGET/.claude/rules/toolkit.md.bak"
 OVERWROTE+=(.claude/rules/toolkit.md)
-
-# ─── UI reference data (upstream-owned - always copy) ────────
-echo "  Copying .claude/ui-reference/ ..."
-for src in "$TOOLKIT_ROOT/.claude/ui-reference/"*.md; do
-  fname="$(basename "$src")"
-  if [ -f "$TARGET/.claude/ui-reference/$fname" ]; then
-    echo "    ↻ overwriting $fname (this is managed by the toolkit)"
-  fi
-  cp "$src" "$TARGET/.claude/ui-reference/$fname"
-  OVERWROTE+=("ui-reference/$fname")
-done
 
 # ─── Project-owned files (skip if already exist) ─────────────
 for f in CLAUDE.md LESSONS.md .claude/settings.local.json; do
