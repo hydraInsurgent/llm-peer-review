@@ -290,7 +290,7 @@ If you run multiple Claude Code sessions at the same time (in Cursor windows or 
 
 - **CLAUDE.md** - Your project-specific instructions. Describe your project, tech stack, and preferences here. See [How It Works](#how-it-works-file-architecture) for details.
 - **`.claude/rules/toolkit.md`** - Toolkit workflow rules (auto-updated on setup). Don't edit this - your changes will be overwritten.
-- **Commands** - Each file in `.claude/commands/` is independent. Want `/review-code` to check different things? Edit `review-code.md`. There are 5 review commands: `review-code`, `review-commands`, `review-plan`, `review-ux`, `review-full`.
+- **Commands** - Each file in `.claude/commands/` is independent. Want `/review-code` to check different things? Edit `review-code.md`. There are 6 review commands: `review-code`, `review-commands`, `review-plan`, `review-ux`, `review-browser`, `review-full`.
 - **LESSONS.md** - Track what you learn across sessions. Yours to customize.
 
 ---

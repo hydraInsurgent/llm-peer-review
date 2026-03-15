@@ -3,7 +3,7 @@
 Mile wide, inch deep. Cross-domain release readiness, not a deep specialist review.
 
 **Use this when:** Pre-release gate, major milestone check, or when multiple domains changed significantly and you need a single go/no-go assessment.
-**Don't use this when:** You need deep review of one area - use /review-code, /review-commands, /review-plan, or /review-ux instead. This command will recommend which specialist review to run if it finds areas needing deeper attention.
+**Don't use this when:** You need deep review of one area - use /review-code, /review-commands, /review-plan, /review-ux, or /review-browser instead. This command will recommend which specialist review to run if it finds areas needing deeper attention.
 
 ## CRITICAL RULES
 <rules>
