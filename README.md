@@ -49,6 +49,8 @@ flowchart TD
 | `/worktree` | Create an isolated parallel session in a new worktree |
 
 > `/ask-gpt` and `/ask-gemini` automate the full debate loop. `/peer-review` is for when you paste feedback from an external tool manually.
+>
+> `/worktree` creates an isolated copy of your project so you can work on something else without interrupting your current work. See [Multi-Session Worktree Support](#multi-session-worktree-support).
 
 #### Which review command do I use?
 
@@ -69,6 +71,8 @@ Use them in this order:
 ```
 
 You don't have to use every command every time. But following the order prevents the most common mistake: coding before you've thought it through.
+
+> **Working on multiple things at once?** Use `/worktree` first to create an isolated copy, then open it in a new Cursor window and run `/explore` there.
 
 ---
 
