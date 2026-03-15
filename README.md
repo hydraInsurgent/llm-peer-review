@@ -12,7 +12,8 @@ Works for product specs, research plans, competitive analysis, and code equally.
 
 ```mermaid
 flowchart TD
-    A(["/explore"]) --> B(["/create-plan"])
+    W(["/worktree (optional)"]) -.-> A(["/explore"])
+    A --> B(["/create-plan"])
     B --> C(["/execute"])
     C --> D(["/review-code"])
     D --> E(["/ask-gpt or /ask-gemini"])
@@ -21,7 +22,7 @@ flowchart TD
     G --> H(["/document"])
 ```
 
-> If the diagram doesn't render, here's the flow: `/explore` -> `/create-plan` -> `/execute` -> `/review-code` -> `/ask-gpt` or `/ask-gemini` -> `/document`
+> If the diagram doesn't render, here's the flow: `/worktree` (optional) -> `/explore` -> `/create-plan` -> `/execute` -> `/review-code` -> `/ask-gpt` or `/ask-gemini` -> `/document`
 
 ---
 
@@ -45,6 +46,7 @@ flowchart TD
 | `/ask-gemini` | Debate your work with Gemini (3 rounds) |
 | `/package-review` | Bundle your work into one file for external review |
 | `/learning-opportunity` | Learn a concept at 3 levels of depth |
+| `/worktree` | Create an isolated parallel session in a new worktree |
 
 > `/ask-gpt` and `/ask-gemini` automate the full debate loop. `/peer-review` is for when you paste feedback from an external tool manually.
 
@@ -63,7 +65,7 @@ flowchart TD
 Use them in this order:
 
 ```
-/explore  →  /create-plan  →  /execute  →  /review-code  →  /ask-gpt or /ask-gemini  →  /document
+/worktree (optional)  →  /explore  →  /create-plan  →  /execute  →  /review-code  →  /ask-gpt or /ask-gemini  →  /document
 ```
 
 You don't have to use every command every time. But following the order prevents the most common mistake: coding before you've thought it through.
@@ -261,12 +263,20 @@ Setup also copies a few supporting files (`.gitignore`, `.gitattributes`, `setti
 
 If you run multiple Claude Code sessions at the same time (in Cursor windows or via Remote Control), use Git worktrees so sessions don't conflict with each other.
 
-**Setup:** Start Claude Code with `--spawn=worktree`, or set it permanently in `/config` under spawn mode.
+**Starting a parallel session:** Type `/worktree` in the Claude Code panel. It creates an isolated worktree, installs dependencies, and copies your API keys. Open the path it gives you in a new Cursor window.
 
 **What the toolkit does automatically:**
+- `/worktree` creates the worktree, installs `npm` dependencies, and copies `.env.local`
 - `/explore` and `/create-plan` detect worktree sessions and rename the branch to `worktree-<issue-number>-<short-label>` when an issue is referenced
 - `/document` creates a PR from the worktree branch and offers to clean up the worktree folder when you're done
 - The branch and PR stay alive even after the worktree folder is deleted - you can always re-create a worktree if fixes are needed
+
+**What `/worktree` does:**
+1. Checks you're not already in a worktree (and warns about uncommitted changes)
+2. Creates a new worktree in `.claude/worktrees/worktree-N`
+3. Runs `npm install` if a `package.json` exists (so debate scripts work)
+4. Copies `.env.local` so API keys are available
+5. Prints the path to open in a new Cursor window
 
 **Key concept:** A worktree is just a folder. Deleting the folder does not delete the branch or PR. Think of it like closing a document window vs. deleting the file.
 

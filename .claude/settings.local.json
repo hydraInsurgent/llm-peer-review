@@ -57,6 +57,8 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebSearch",
 
+      "Bash(cp *)",
+
       "Bash(ls *)",
       "Bash(diff *)",
       "Bash(echo *)",

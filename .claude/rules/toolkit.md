@@ -23,6 +23,7 @@
 <procedure>
 
 We follow this flow for features:
+0. `/worktree` - (Optional) Create an isolated worktree for parallel work
 1. `/explore` - Understand the problem, ask clarifying questions
 2. `/create-plan` - Create a step-by-step plan with status tracking
 3. `/execute` - Build it, updating the plan as we go
@@ -57,6 +58,7 @@ We follow this flow for features:
 | `/pair-debug` | Focused debugging partner - investigate before fixing |
 | `/package-review` | Review a package/codebase |
 | `/learning-opportunity` | Pause to learn a concept at 3 levels of depth |
+| `/worktree` | Create an isolated parallel session in a new worktree |
 
 ### Command-Specific Rules
 
@@ -165,6 +167,7 @@ These are defined in `.claude/settings.local.json`. Each one exists for a reason
 | `node scripts/ask-gemini.js` | Running the ask-gemini debate script |
 | `Read`, `Edit`, `Write`, `Glob`, `Grep` | Claude's built-in file tools (included for documentation) |
 | `WebFetch` (github.com, raw.githubusercontent.com), `WebSearch` | Fetching GitHub content and web search |
+| `cp` | Copying files (e.g. `.env.local` into worktrees) |
 | `ls`, `diff`, `echo`, `mkdir`, `cat` | Reading directories, comparing files, writing output, creating folders |
 | `cd` | **Not included by default.** If your workflow needs it, add `"Bash(cd *)"` to your project's `.claude/settings.local.json`. Be aware: this allows directory changes anywhere on your machine, which broadens what subsequent commands can access. |
 
